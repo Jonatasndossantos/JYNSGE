@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JYNSGE - Perfil</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            background: linear-gradient(180deg, #00238C 0%, #9747FF 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Perfil section */
+        .profile-section {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .password-field {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 20px;
+            margin: 1rem auto;
+            max-width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Botões de ação */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .action-button {
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Galeria */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .gallery-item {
+            background: #00238C;
+            padding: 1rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #010B28;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-button {
+            background: #00238C;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="logo.png" alt="JYNSGE Logo" height="40">
+        <nav>
+            <a href="#">Últimas Notícias</a>
+            <a href="#">Análises</a>
+            <a href="#">Tecnologias</a>
+            <button>Registrar</button>
+        </nav>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <h1>PERFIL</h1>
+        <img src="profile-photo.jpg" alt="Foto de Perfil" class="profile-photo">
+        <div class="password-field">
+            <span>senha:</span>
+            <span>********</span>
+            <span>🔒</span>
+        </div>
+        <p>Foto de Perfil</p>
+    </section>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <div class="action-button">
+            <span>🔔</span>
+            <p>Notificações</p>
+            <small>Deseja Desativar?</small>
+        </div>
+        <div class="action-button">
+            <span>🔑</span>
+            <p>Dados de Segurança</p>
+        </div>
+        <div class="action-button">
+            <span>👤</span>
+            <p>Adicionar Conta</p>
+        </div>
+    </div>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/120x120/00238C/ffffff?text=VR+Tech" alt="VR">
+            <span>❤️</span>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/120x120/00238C/ffffff?text=JYNSGE" alt="Tech">
+            <span>❤️</span>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/120x120/00238C/ffffff?text=Robot" alt="Robot">
+            <span>❤️</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            <h3>Sobre JYNSGE</h3>
+            <ul>
+                <li><a href="#">CES Events</a></li>
+                <li><a href="#">Code of Conduct</a></li>
+                <li><a href="#">CTA</a></li>
+                <li><a href="#">About CTA</a></li>
+                <li><a href="#">Get Involved</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Ajuda</h3>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-button">FB</a>
+            <a href="#" class="social-button">YT</a>
+            <a href="#" class="social-button">IG</a>
+            <a href="#" class="social-button">X</a>
+        </div>
+        <p>© JYNSGE</p>
+    </footer>
+</body>
+</html>
