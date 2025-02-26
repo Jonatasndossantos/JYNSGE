@@ -2,7 +2,12 @@
 <header class="sticky top-0 inset-x-0 z-100 bg text transition-all focus-within:!top-0 theme-blue-dark"
                 data-behavior="GlobalHeader">
 
+<style> 
+  body{
+        background-color:var(--blue-100);
+  }
 
+  </style>
 
                 <div class="">
                         <div class="relative container py-16">
@@ -35,8 +40,8 @@
                                                         data-behavior="DesktopNav"
                                                         aria-labelledby="headerPrimaryNavLabel">
                                                         <li class="shrink-0" data-desktopnav-group="">
-
-                                                                <a href="index.html" type="button"
+                                            
+                                                                <a href="/" type="button"
                                                                         class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none pl-12 pr-12 rounded min-w-48 min-h-48 py-12 f-heading-2 hover:bg-interactive-on-background active:bg-layer text-light aria-expanded:bg-white aria-expanded:text-inverse">
 
                                                                         <span
@@ -104,7 +109,7 @@
 
                                                                                                         <div
                                                                                                                 class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                <a href="topics/artificial-intelligence/artificial-intelligence.html"
+                                                                                                                <a href="/inteligenciaArtificial"
                                                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                         aria-label="Artificial Intelligence"></a>
 
@@ -152,7 +157,7 @@
 
                                                                                                         <div
                                                                                                                 class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                <a href="topics/digital-health/digital-health.html"
+                                                                                                                <a href="/eventos"
                                                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                         aria-label="Digital Health"></a>
 
@@ -199,7 +204,7 @@
 
                                                                                                         <div
                                                                                                                 class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                <a href="topics/vehicle-tech-and-advanced-mobility/vehicle-tech-and-advanced-mobility.html"
+                                                                                                                <a href="/automacao"
                                                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                         aria-label="Vehicle Tech and Advanced Mobility"></a>
 
@@ -244,7 +249,7 @@
 
                                                                                                         <div
                                                                                                                 class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                <a href="topics/Robotics/Robotics.html"
+                                                                                                                <a href="/robotica"
                                                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                         aria-label="Vehicle Tech and Advanced Mobility"></a>
 
@@ -274,7 +279,7 @@
                                                                                                 </li>
                                                                                         </ul>
 
-                                                                                        <a href="topics/topics.html"
+                                                                                        <a href="/topicos"
                                                                                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 mt-24 bg-interactive-on-layer"
                                                                                                 data-behavior="Track"
                                                                                                 data-track-event="nav_click"
@@ -445,7 +450,7 @@
                                                         <ul class="" aria-labelledby="headerPrimaryMobileNavLabel">
                                                                 <li class="border-b first:border-t border-subtle"
                                                                         data-mobilenav-group="">
-                                                                        <a href="index.html"
+                                                                        <a href="/"
                                                                                 class="flex items-center justify-between w-full py-8 f-ui-3">
                                                                                 <font style="vertical-align: inherit;">
                                                                                         <font style="vertical-align: inherit;">

@@ -960,7 +960,7 @@
 
                                                                                 <div
                                                                                         class="relative flex flex-col h-full group p-16 pb-24 lg:p-24 rounded-lg bg-layer text-primary transition group/card">
-                                                                                        <a href="topics/vehicle-tech-and-advanced-mobility/vehicle-tech-and-advanced-mobility.html"                                                                                                
+                                                                                        <a href="/automacao"                                                                                                
                                                                                                 class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                 aria-label="Become a CTA Member"></a>
 
@@ -1059,7 +1059,7 @@
 
                                                                         <div
                                                                                 class="relative flex flex-col h-full group p-16 pb-24 rounded-lg bg-layer text-primary transition group/card">
-                                                                                <a href="topics/Robotics/Robotics.html"
+                                                                                <a href="/robotica"
                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                         aria-label="Retro Rides Meet Future Vibes: Vehicle Tech That Gets the Job Done"></a>
 
@@ -1091,7 +1091,7 @@
 
                                                                                 <div
                                                                                         class="relative flex flex-wrap gap-y-8 gap-x-4 mt-auto pt-space-6 z-2">
-                                                                                        <a href="topics/Robotics/Robotics.html"
+                                                                                        <a href="/robotica"
                                                                                                 class="inline-flex items-center max-w-full h-28 px-12 bg-interactive-on-layer hover:bg-mix-interactive-on-layer-8 text-secondary f-ui-1 rounded-full transition-all duration-100 ">
                                                                                                 <span
                                                                                                         class="block whitespace-nowrap overflow-hidden text-ellipsis">robotica</span>
@@ -1109,7 +1109,7 @@
 
                                                                         <div
                                                                                 class="relative flex flex-col h-full group p-16 pb-24 rounded-lg bg-layer text-primary transition group/card">
-                                                                                <a href="topics/Robotics/Robotics.html"
+                                                                                <a href="/robotica"
                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                         aria-label="Did You Know There are 3 Kinds of Quantum? &nbsp;"></a>
 
@@ -1139,14 +1139,14 @@
 
                                                                                 <div
                                                                                         class="relative flex flex-wrap gap-y-8 gap-x-4 mt-auto pt-space-6 z-2">
-                                                                                        <a href="topics/artificial-intelligence/artificial-intelligence.html"
+                                                                                        <a href="/inteligenciaArtificial"
                                                                                                 class="inline-flex items-center max-w-full h-28 px-12 bg-interactive-on-layer hover:bg-mix-interactive-on-layer-8 text-secondary f-ui-1 rounded-full transition-all duration-100 ">
                                                                                                 <span
                                                                                                         class="block whitespace-nowrap overflow-hidden text-ellipsis">inteligencia
                                                                                                         artificial</span>
                                                                                         </a>
 
-                                                                                        <a href="topics/Robotics/Robotics.html"
+                                                                                        <a href="/robotica"
                                                                                                 class="inline-flex items-center max-w-full h-28 px-12 bg-interactive-on-layer hover:bg-mix-interactive-on-layer-8 text-secondary f-ui-1 rounded-full transition-all duration-100 ">
                                                                                                 <span
                                                                                                         class="block whitespace-nowrap overflow-hidden text-ellipsis">robotica</span>
@@ -1164,7 +1164,7 @@
 
                                                                         <div
                                                                                 class="relative flex flex-col h-full group p-16 pb-24 rounded-lg bg-layer text-primary transition group/card">
-                                                                                <a href="topics/Robotics/Robotics.html"
+                                                                                <a href="/robotica"
                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                         aria-label="Everybody Plays: How the Gaming Industry Is Leveling Up"></a>
 
@@ -1194,14 +1194,14 @@
 
                                                                                 <div
                                                                                         class="relative flex flex-wrap gap-y-8 gap-x-4 mt-auto pt-space-6 z-2">
-                                                                                        <a href="topics/artificial-intelligence/artificial-intelligence.html"
+                                                                                        <a href="/inteligenciaArtificial"
                                                                                                 class="inline-flex items-center max-w-full h-28 px-12 bg-interactive-on-layer hover:bg-mix-interactive-on-layer-8 text-secondary f-ui-1 rounded-full transition-all duration-100 ">
                                                                                                 <span
                                                                                                         class="block whitespace-nowrap overflow-hidden text-ellipsis">inteligencia
                                                                                                         artificial</span>
                                                                                         </a>
 
-                                                                                        <a href="topics/Robotics/Robotics.html"
+                                                                                        <a href="/robotica"
                                                                                                 class="inline-flex items-center max-w-full h-28 px-12 bg-interactive-on-layer hover:bg-mix-interactive-on-layer-8 text-secondary f-ui-1 rounded-full transition-all duration-100 ">
                                                                                                 <span
                                                                                                         class="block whitespace-nowrap overflow-hidden text-ellipsis">robotica</span>
@@ -1219,7 +1219,7 @@
 
                                                                         <div
                                                                                 class="relative flex flex-col h-full group p-16 pb-24 rounded-lg bg-layer text-primary transition group/card">
-                                                                                <a href="topics/Robotics/Robotics.html"
+                                                                                <a href="/robotica"
                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                         aria-label="Connect. Solve. Discover. DIVE IN. "></a>
 
@@ -1248,7 +1248,7 @@
 
                                                                                 <div
                                                                                         class="relative flex flex-wrap gap-y-8 gap-x-4 mt-auto pt-space-6 z-2">
-                                                                                        <a href="topics/Robotics/Robotics.html"
+                                                                                        <a href="/robotica"
                                                                                                 class="inline-flex items-center max-w-full h-28 px-12 bg-interactive-on-layer hover:bg-mix-interactive-on-layer-8 text-secondary f-ui-1 rounded-full transition-all duration-100 ">
                                                                                                 <span
                                                                                                         class="block whitespace-nowrap overflow-hidden text-ellipsis">robotica</span>
@@ -1290,7 +1290,7 @@
 
                                                                         <div
                                                                                 class="relative flex flex-col h-full group rounded bg-layer text-primary transition p-16 md:pt-20 md:pb-24 group/card">
-                                                                                <a href="topics/artificial-intelligence/artificial-intelligence.html"
+                                                                                <a href="/inteligenciaArtificial"
                                                                                         class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                         aria-label="NVIDIA CEO Jensen Huang to Deliver JYNSGE 2025 Keynote"></a>
 
