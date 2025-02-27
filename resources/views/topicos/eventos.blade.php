@@ -2864,7 +2864,7 @@ Futurecom é um dos maiores eventos de tecnologia e telecomunicações da Améri
                                                         <ul class="" aria-labelledby="footerNavcESLabel">
                                                                 <li class="mt-16">
 
-                                                                        <a href="../../discover/discover.html"
+                                                                        <a href="/sobre"
                                                                                 class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                                                                 <span class="text-inherit ">Sobre
@@ -2889,7 +2889,7 @@ Futurecom é um dos maiores eventos de tecnologia e telecomunicações da Améri
                                                         <ul class="" aria-labelledby="footerNavmediaLabel">
                                                                 <li class="mt-16">
 
-                                                                        <a href="../../about-ces/code-of-conduct.html"
+                                                                        <a href="/termos"
                                                                                 class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                                                                 <span class="text-inherit ">Termos e

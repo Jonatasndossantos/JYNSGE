@@ -14,7 +14,7 @@
 
 
                 <div class="relative min-h-[35rem] w-full bg-default text-primary -mt-116 md:-mt-120"
-                        data-behavior="HomeHero" style="background: url({{ url ('assets/media/slogan.gif')}}) no-repeat center; background-size: 100% 100%;">
+                        data-behavior="HomeHero" style="background: url({{ url ('assets/media/slogan.gif')}}) no-repeat center; background-size: cover; max-height: 800px;">
                         <div class="sticky top-0 flex flex-row justify-center items-center w-full h-lvh text-center">
                                 <div class="relative container z-5 animate-up">
 
@@ -26,8 +26,8 @@
 
                                 </div>
 
-                                <div class="absolute inset-0 overflow-hidden transform-gpu"
-                                        style="background: url('{{URL ('assets/media/slogan.gif')}} no-repeat center center; background-size: cover;">
+                                <div class="absolute inset-0 overflow-hidden transform-gpu h-[50vh] md:h-[60vh] lg:h-[70vh]"
+                                        style="background: url('media/slogan.gif') no-repeat center center; background-size: cover; max-height: 800px;">
                                         <div
                                                 class="hidden xl:block absolute top-full left-0 z-1 w-11/12 2xl:w-10/12 min-w-[1135px] aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
 
@@ -63,7 +63,7 @@
                                                         src="{{URL ('assets/media/Projeto Redimensionar vídeo.mp4')}}"
                                                         class="w-full h-full object-cover hidden lg:block rounded"
                                                         data-videotoggle-video="" data-homehero-media=""
-                                                        stream-captured="true">
+                                                        stream-captured="true" >
                                                         Your browser does not support the video tag.
                                                 </video>
 
@@ -73,7 +73,7 @@
                                                         data-videotoggle-video="" data-homehero-media="">
                                                         Your browser does not support the video tag.
                                                 </video>
-
+                                                
 
                                                 <button type="button"
                                                         class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none rounded-full min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 absolute bottom-16 right-24 z-3 bg-on-image"
@@ -93,7 +93,7 @@
                                 </div>
                         </div>
                 </div>
-
+ 
 
                 <div>
 
@@ -105,7 +105,7 @@
 
 
 
-                                <div class="block-container-full">
+                                <div class="block-container-full" style="margin-top:57%">
                                         <div class="">
 
 
@@ -1593,7 +1593,7 @@
                                                         <ul class="" aria-labelledby="footerNavcESLabel">
                                                                 <li class="mt-16">
 
-                                                                        <a href="discover/discover.html"
+                                                                        <a href="/sobre"
                                                                                 class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                                                                 <span class="text-inherit ">Sobre
@@ -1618,7 +1618,7 @@
                                                         <ul class="" aria-labelledby="footerNavmediaLabel">
                                                                 <li class="mt-16">
 
-                                                                        <a href="about-ces/code-of-conduct.html"
+                                                                        <a href="/termos"
                                                                                 class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                                                                 <span class="text-inherit ">Termos e

@@ -19,6 +19,22 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/login', function () {
+    return view('auth/login');
+});
+
+Route::get('/cadastro', function () {
+    return view('auth/register');
+});
+
+
+Route::get('/sobre', function () {
+    return view('sobre');
+});
+
+Route::get('/termos', function () {
+    return view('termos');
+});
 
 Route::get('/topicos', function () {
     return view('todosTopicos');

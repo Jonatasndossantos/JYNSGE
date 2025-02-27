@@ -279,7 +279,7 @@
                                                                                                 </li>
                                                                                         </ul>
 
-                                                                                        <a href="/topicos"
+                                                                                        <a href="/todosTopicos"
                                                                                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 mt-24 bg-interactive-on-layer"
                                                                                                 data-behavior="Track"
                                                                                                 data-track-event="nav_click"
@@ -312,7 +312,7 @@
                                         <div class="flex justify-end ml-auto">
                                                 <div class="theme-blue-dark hidden md:flex whitespace-nowrap">
 
-                                                        <a href="login.html"
+                                                        <a href="/login"
                                                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-accent text-inverse hover:bg-mix-interactive-accent-8 active:bg-mix-interactive-accent-12 f-ui-1 "
                                                                 data-behavior="Track" data-track-event="button_click"
                                                                 data-track-data="{&quot;button_hierarchy&quot;:&quot;accent&quot;,&quot;call_to_action&quot;:&quot;Register&quot;,&quot;action&quot;:&quot;new_page&quot;}">
@@ -611,7 +611,7 @@
                                                                                                                 </a>
                                                                                                                 <div
                                                                                                                         class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                        <a href="topics/artificial-intelligence/artificial-intelligence.html"
+                                                                                                                        <a href="/inteligenciaArtificial"
                                                                                                                                 class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                                 aria-label="Artificial Intelligence"></a>
 
@@ -647,7 +647,7 @@
 
                                                                                                                 <div
                                                                                                                         class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                        <a href="topics/digital-health/digital-health.html"
+                                                                                                                        <a href="/eventos"
                                                                                                                                 class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                                 aria-label="Digital Health"></a>
 
@@ -670,8 +670,7 @@
 
                                                                                                                         <h3
                                                                                                                                 class="outline-none pr-8 f-heading-2 pl-16">
-                                                                                                                                Digital
-                                                                                                                                Health
+                                                                                                                                Eventos
                                                                                                                         </h3>
 
 
@@ -683,7 +682,7 @@
 
                                                                                                                 <div
                                                                                                                         class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                        <a href="topics/vehicle-tech-and-advanced-mobility/vehicle-tech-and-advanced-mobility.html"
+                                                                                                                        <a href="/automacao"
                                                                                                                                 class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                                 aria-label="Automação"></a>
 
@@ -717,7 +716,7 @@
                                                                                                                 class="mt-space-1">
 
                                                                                                                 <div class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                                                                                        <a href="topics/Robotics/Robotics.html"
+                                                                                                                        <a href="/robotica"
                                                                                                                                 class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
                                                                                                                                 aria-label="Robotica"></a>
 
@@ -740,7 +739,7 @@
 
                                                                                                                         <h3
                                                                                                                                 class="outline-none pr-8 f-heading-2 pl-16">
-                                                                                                                                Robotica
+                                                                                                                                Robótica
                                                                                                                         </h3>
 
 
@@ -750,16 +749,14 @@
                                                                                                 </ul>
 
 
-                                                                                                <a href="topics/topics.html"
+                                                                                                <a href="/todosTopicos"
                                                                                                         class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 mt-24 bg-interactive-on-layer"
                                                                                                         data-behavior="Track"
                                                                                                         data-track-event="button_click"
                                                                                                         data-track-data="{&quot;button_hierarchy&quot;:&quot;secondary&quot;,&quot;call_to_action&quot;:&quot;View all topics&quot;,&quot;action&quot;:&quot;new_page&quot;}">
 
                                                                                                         <span
-                                                                                                                class="pt-1 text-inherit  mr-12">View
-                                                                                                                all
-                                                                                                                topics</span>
+                                                                                                                class="pt-1 text-inherit  mr-12">Todos os Tópicos</span>
 
                                                                                                         <svg class="icon-transition  shrink-0 pointer-events-none -mr-4"
                                                                                                                 width="20"
@@ -782,12 +779,12 @@
 
                                                 <div class="mt-24">
 
-                                                        <a href="login.html"
+                                                        <a href="/login"
                                                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-accent text-inverse hover:bg-mix-interactive-accent-8 active:bg-mix-interactive-accent-12 f-ui-1 flex w-full"
                                                                 data-behavior="Track" data-track-event="button_click"
                                                                 data-track-data="{&quot;button_hierarchy&quot;:&quot;accent&quot;,&quot;call_to_action&quot;:&quot;Register&quot;,&quot;action&quot;:&quot;new_page&quot;}">
 
-                                                                <span class="pt-1 text-inherit ">Registrar</span>
+                                                                <span class="pt-1 text-inherit ">login</span>
 
                                                         </a>
 

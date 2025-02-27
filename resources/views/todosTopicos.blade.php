@@ -80,7 +80,7 @@
 
                                 <div class="relative mb-16">
                                     <div class="flex justify-center items-center h-full aspect-16/9">
-                                        <img src="{{ url('/assets/media/24-cta-2523_ces25-topicpage-ai-enterprise_3200x1600.jpg') }} "
+                                        <img src="{{ url('/assets/media/ia.jpg') }} "
                                             alt="Alt text: A Man with short dark hair in a suit stands confidently against a vibrant, abstract background with flowing shapes in blue, yellow, and white."
                                             sizes="(max-width: 539px) 96vw, (min-width: 540px) and (max-width: 767px) 96vw, (min-width: 768px) and (max-width: 1023px) 48vw, (min-width: 1024px) and (max-width: 1279px) 48vw, (min-width: 1280px) and (max-width: 1679px) 32vw, (min-width: 1680px) and (max-width: 1919px) 32vw, (min-width: 1920px) 32vw"
                                             loading="lazy" class="w-full h-full object-cover rounded-md" />
@@ -118,7 +118,7 @@
 
                                 <div class="relative mb-16">
                                     <div class="flex justify-center items-center h-full aspect-16/9">
-                                        <img src="{{ url('/assets/media/24-cta-2523_ces25-topicpage-ai-autotech_3200x1600.jpg') }}"
+                                        <img src="{{ url('/assets/media/aviao.jpg') }}"
                                             alt="Alt text: A Man with short dark hair in a white lab coat stands confidently against a vibrant, abstract background with flowing shapes in blue, purple, green and white."
                                             sizes="(max-width: 539px) 96vw, (min-width: 540px) and (max-width: 767px) 96vw, (min-width: 768px) and (max-width: 1023px) 48vw, (min-width: 1024px) and (max-width: 1279px) 48vw, (min-width: 1280px) and (max-width: 1679px) 32vw, (min-width: 1680px) and (max-width: 1919px) 32vw, (min-width: 1920px) 32vw"
                                             loading="lazy" class="w-full h-full object-cover rounded-md" />
@@ -155,7 +155,7 @@
 
                                 <div class="relative mb-16">
                                     <div class="flex justify-center items-center h-full aspect-16/9">
-                                        <img src="{{ url('/assets/media/24-cta-2523_ces25-topicpage-ai-autotech_3200x1600.jpg') }}  "
+                                        <img src="{{ url('/assets/media/torso.jpg') }}  "
                                             alt="Alt text: Um robo "
                                             sizes="(max-width: 539px) 96vw, (min-width: 540px) and (max-width: 767px) 96vw, (min-width: 768px) and (max-width: 1023px) 48vw, (min-width: 1024px) and (max-width: 1279px) 48vw, (min-width: 1280px) and (max-width: 1679px) 32vw, (min-width: 1680px) and (max-width: 1919px) 32vw, (min-width: 1920px) 32vw"
                                             loading="lazy" class="w-full h-full object-cover rounded-md" />
@@ -637,10 +637,10 @@
                             <ul class="" aria-labelledby="footerNavcESLabel">
                                 <li class="mt-16">
 
-                                    <a href="../discover/discover.html"
+                                    <a href="/sobre"
                                         class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
-                                        <span class="text-inherit ">About
+                                        <span class="text-inherit ">Sobre
                                             JYNSGE</span>
 
                                     </a>
@@ -661,7 +661,7 @@
                             <ul class="" aria-labelledby="footerNavmediaLabel">
                                 <li class="mt-16">
 
-                                    <a href="../about-ces/code-of-conduct.html"
+                                    <a href="/termos"
                                         class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                         <span class="text-inherit ">Termos e

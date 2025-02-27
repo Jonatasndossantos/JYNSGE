@@ -2687,7 +2687,7 @@ Em resumo, a adoção de automação e tecnologia é essencial para indústrias 
                                                         <ul class="" aria-labelledby="footerNavcESLabel">
                                                                 <li class="mt-16">
 
-                                                                        <a href="../../discover/discover.html"
+                                                                        <a href="/sobre"
                                                                                 class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                                                                 <span class="text-inherit ">Sobre
@@ -2712,7 +2712,7 @@ Em resumo, a adoção de automação e tecnologia é essencial para indústrias 
                                                         <ul class="" aria-labelledby="footerNavmediaLabel">
                                                                 <li class="mt-16">
 
-                                                                        <a href="../../about-ces/code-of-conduct.html"
+                                                                        <a href="/termos"
                                                                                 class="inline-flex justify-between items-center transition-colors duration-100 underline-transparent hover:underline-default underline-offset-4 decoration-1 f-heading-2 ">
 
                                                                                 <span class="text-inherit ">Termos e
