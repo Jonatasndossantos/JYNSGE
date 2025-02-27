@@ -8,6 +8,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png')}}">
 
     <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)"
@@ -20,9 +21,8 @@
         href="{{URL ('assets/media/favicon-16x16.png')}}">
 
     <link rel="stylesheet" href="{{ url ('/assets/app-DDAX_FZV.css')}}">
-
+    
 </head>
-@include('layouts.navigation')
 
 <!-- Page Heading -->
 @if (isset($header))
@@ -34,8 +34,10 @@
 @endif
 
 <!-- Page Content -->
-<main>
+
     {{ $slot }}
-</main>
+
+
+<script src="{{ url ('/assets/app-DDAX_FZV.js')}}"></script>
 
 </html>

@@ -13,12 +13,12 @@
             <div class="flex w-full h-header items-center">
                 <div class="theme-blue-dark">
                     <a href="perfil.html">
-                        <img class="py-2" src="{{URL ('assets/media/logo.png')}}"
+                        <img class="" src="{{URL ('assets/media/logo.png')}}"
                             alt="Logo da JYNSGE, com formas arredondadas lembrando uma rede de internet, simbolizando tanto a tecnologia, como as informações nela conectada, junto com o nome do site JYNSGE, escrito com uma letra elegante e moderna.">
                     </a>
                 </div>
 
-                <nav class="w-full ml-24" aria-label="Primary">
+                <nav  x-data="{ open: false }" class="w-full ml-24" aria-label="Primary">
                     <h2 id="headerPrimaryNavLabel" class="outline-none sr-only">
                         Primary Navigation
                     </h2>
@@ -95,14 +95,7 @@
                                         </ul>
                                     </div>
                                     <div class="px-24 border-r border-subtle last:border-none pb-24">
-
-
-
                                         <ul class="flex flex-col gap-y-12">
-
-
-
-
                                             <li>
 
                                                 <div
@@ -237,26 +230,65 @@
 
                 <div class="flex justify-end ml-auto">
                     <div class="theme-blue-dark hidden md:flex whitespace-nowrap">
+                        <nav class="-mx-3 flex flex-1 justify-end gap-x-4">
                         @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
                             @auth
-                            
+                                <ul class="hidden xl:flex items-center gap-x-4" data-behavior="DesktopNav"
+                                    aria-labelledby="headerPrimaryNavLabel">
+                                    <li class="shrink-0" data-desktopnav-group="">
+                                        <button type="button"
+                                            class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none rounded-full min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 md:ml-12"
+                                            data-desktopnav-groupbtn="" aria-expanded="false" data-behavior="Track"
+                                            data-track-event="nav_click">                                           
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff" version="1.1" id="Capa_1" width="24px" height="24px" viewBox="0 0 45.532 45.532" xml:space="preserve" stroke="#ffffff">
+
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <g id="SVGRepo_iconCarrier"> <g> <path d="M22.766,0.001C10.194,0.001,0,10.193,0,22.766s10.193,22.765,22.766,22.765c12.574,0,22.766-10.192,22.766-22.765 S35.34,0.001,22.766,0.001z M22.766,6.808c4.16,0,7.531,3.372,7.531,7.53c0,4.159-3.371,7.53-7.531,7.53 c-4.158,0-7.529-3.371-7.529-7.53C15.237,10.18,18.608,6.808,22.766,6.808z M22.761,39.579c-4.149,0-7.949-1.511-10.88-4.012 c-0.714-0.609-1.126-1.502-1.126-2.439c0-4.217,3.413-7.592,7.631-7.592h8.762c4.219,0,7.619,3.375,7.619,7.592 c0,0.938-0.41,1.829-1.125,2.438C30.712,38.068,26.911,39.579,22.761,39.579z"/> </g> </g>
+
+                                            </svg>
+
+                                        </button>
+
+                                        <div class="px-24 theme-blue-light text trans-nav absolute top-full right-0 py-24 bg-layer rounded shadow-lg"
+                                            data-desktopnav-groupcontent="" inert="">
+                                            <!-- Settings Dropdown -->
+                                            <div>{{ Auth::user()->name }}</div>
+
+                                            <x-dropdown-link :href="route('profile.edit')">
+                                                {{ __('Profile') }}
+                                            </x-dropdown-link>
+
+                                            <!-- Authentication -->
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+
+                                                <x-dropdown-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                    this.closest('form').submit();">
+                                                    {{ __('Log Out') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </div>
+                                </li>
+                            </ul>
                             @else
                             <a href="{{ route('login') }}"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-accent text-inverse hover:bg-mix-interactive-accent-8 active:bg-mix-interactive-accent-12 f-ui-1 ">
                                 <button>
                                     Entrar
                                 </button>
                             </a>
 
-                            @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                <button>
-                                    Cadastrar
-                                </button>
-                            </a>
-                            @endif
+                                @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                    class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-accent text-inverse hover:bg-mix-interactive-accent-8 active:bg-mix-interactive-accent-12 f-ui-1 ">
+                                    <button>
+                                        Cadastrar
+                                    </button>
+                                </a>
+                                @endif
                             @endauth
                         </nav>
                         @endif
@@ -265,13 +297,10 @@
 
 
                     <div data-behavior="GlobalSearch">
-
-
                         <button type="button"
                             class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none rounded-full min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 md:ml-12"
                             aria-label="Open Search" data-globalsearch-trigger="" data-behavior="Track"
                             data-track-event="nav_click" data-track-data="{&quot;nav_item&quot;:&quot;Search&quot;}">
-
 
                             <svg class="icon-transition " width="20" height="20" aria-hidden="true">
                                 <use xlink:href="#search-20"></use>

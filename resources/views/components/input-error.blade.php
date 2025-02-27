@@ -6,4 +6,5 @@
             <li>{{ $message }}</li>
         @endforeach
     </ul>
+    <br>
 @endif
