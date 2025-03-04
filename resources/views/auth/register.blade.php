@@ -113,42 +113,65 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Nome')" />
-                <x-text-input id="name" class="input-field block mt-1 w-full" type="text" name="name" placeholder="Nome" :value="old('name')" required autofocus autocomplete="name" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <label for="name">Nome</label>
+                <input id="name" 
+                       class="input-field block mt-1 w-full" 
+                       type="text" 
+                       name="name" 
+                       placeholder="Nome" 
+                       value="{{ old('name') }}" 
+                       required 
+                       autofocus 
+                       autocomplete="name">
+                @error('name')
+                    <span class="text-red-600 text-sm mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="input-field block mt-1 w-full" type="email" name="email" placeholder="Email" :value="old('email')" required autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <label for="email">Email</label>
+                <input id="email" 
+                       class="input-field block mt-1 w-full" 
+                       type="email" 
+                       name="email" 
+                       placeholder="Email" 
+                       value="{{ old('email') }}" 
+                       required 
+                       autocomplete="username">
+                @error('email')
+                    <span class="text-red-600 text-sm mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Senha')" />
-
-                <x-text-input id="password" class="input-field block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                placeholder="Senha"
-                                required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <label for="password">Senha</label>
+                <input id="password" 
+                       class="input-field block mt-1 w-full"
+                       type="password"
+                       name="password"
+                       placeholder="Senha"
+                       required 
+                       autocomplete="new-password">
+                @error('password')
+                    <span class="text-red-600 text-sm mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirmar senha')" />
-
-                <x-text-input id="password_confirmation" class="input-field block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" 
-                                placeholder="Senha"
-                                required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                <label for="password_confirmation">Confirmar senha</label>
+                <input id="password_confirmation" 
+                       class="input-field block mt-1 w-full"
+                       type="password"
+                       name="password_confirmation" 
+                       placeholder="Senha"
+                       required 
+                       autocomplete="new-password">
+                @error('password_confirmation')
+                    <span class="text-red-600 text-sm mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <button class="login-button ml-4">

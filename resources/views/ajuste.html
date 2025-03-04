@@ -1,28 +1,43 @@
-@if (Route::has('login'))
-<nav class="-mx-3 flex flex-1 justify-end">
-    @auth
-    <a href="{{ url('/home') }}"
-        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-        <button>
-            home
-        </button>
-    </a>
-    @else
-    <a href="{{ route('login') }}"
-        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-        <button>
-            Entrar
-        </button>
-    </a>
+<div class="theme-inverse mt-space-9 flex flex-col pb-space-8 bg text">
+        <section class="mt-space-9 ">
+                <div class="container">
+                        <div class="container ">
+                                <div class="xl:w-10-cols max-w-full text-primary f-heading-7">
+                                        <p>
+                                                <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                                {{ $noticia->titulo }}
+                                                        </font>
+                                                </font>
+                                        </p>
+                                </div>
+                        </div>
 
-    @if (Route::has('register'))
-    <a href="{{ route('register') }}"
-        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-        <button>
-            Cadastrar
-        </button>
-    </a>
-    @endif
-    @endauth
-</nav>
-@endif
+                        <div class="grid lg:grid-cols-2 gap-x-gutter gap-y-space-7 mt-space-7">
+                                <div class="pr-space-6">
+                                        <div class="rich-text ">
+                                                <p>
+                                                        <font style="text-align: justify;">
+
+                                                                {{ $noticia->texto }}
+                                                        </font>
+                                                </p>
+                                        </div>
+                                </div>
+
+                                <div>
+                                        <div
+                                                class="relative flex flex-col h-full group p-16 pb-24 lg:p-24 rounded-lg bg-layer text-primary transition group/card">
+                                                <div class="relative mb-space-4">
+                                                        <div
+                                                                class="flex justify-center items-center h-full aspect-16/9">
+                                                                <img src="{{ url('/assets/media/medico.jpg') }}" alt=""
+                                                                        class="w-full h-full object-cover rounded-md">
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </section>
+</div>

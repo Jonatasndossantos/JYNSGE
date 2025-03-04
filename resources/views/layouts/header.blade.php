@@ -26,7 +26,7 @@
                     <ul class="hidden xl:flex items-center gap-x-4" data-behavior="DesktopNav"
                         aria-labelledby="headerPrimaryNavLabel">
                         <li class="shrink-0" data-desktopnav-group="">
-                            <a href="index.html" type="button"
+                            <a href="/" type="button"
                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none pl-12 pr-12 rounded min-w-48 min-h-48 py-12 f-heading-2 hover:bg-interactive-on-background active:bg-layer text-light aria-expanded:bg-white aria-expanded:text-inverse">
 
                                 <span class="pt-1 text-inherit pointer-events-none mr-4">Ultimas
@@ -51,179 +51,239 @@
                         </li>
 
                         <li class="shrink-0" data-desktopnav-group="">
-                            <button type="button"
-                                class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none pl-12 pr-12 rounded min-w-48 min-h-48 py-12 f-heading-2 hover:bg-interactive-on-background active:bg-layer text-light aria-expanded:bg-white aria-expanded:text-inverse"
-                                data-desktopnav-groupbtn="" aria-expanded="false" data-behavior="Track"
-                                data-track-event="nav_click"
-                                data-track-data="{&quot;nav_item&quot;:&quot;Explore JYNSGE&quot;}">
 
-                                <span class="pt-1 text-inherit pointer-events-none mr-4">Tecnologias</span>
+                                                                <button type="button"
+                                                                        class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none pl-12 pr-12 rounded min-w-48 min-h-48 py-12 f-heading-2 hover:bg-interactive-on-background active:bg-layer text-light aria-expanded:bg-white aria-expanded:text-inverse"
+                                                                        data-desktopnav-groupbtn=""
+                                                                        aria-expanded="false" data-behavior="Track"
+                                                                        data-track-event="nav_click"
+                                                                        data-track-data="{&quot;nav_item&quot;:&quot;Explore JYNSGE&quot;}">
 
-                                <svg class="icon-transition [[aria-expanded=true]_&amp;]:rotate-180 shrink-0 pointer-events-none -mr-4"
-                                    width="16" height="16" aria-hidden="true">
-                                    <use xlink:href="#caret-down-16"></use>
-                                </svg>
+                                                                        <span
+                                                                                class="pt-1 text-inherit pointer-events-none mr-4">Tecnologias</span>
 
-                            </button>
+                                                                        <svg class="icon-transition [[aria-expanded=true]_&amp;]:rotate-180 shrink-0 pointer-events-none -mr-4"
+                                                                                width="16" height="16"
+                                                                                aria-hidden="true">
+                                                                                <use xlink:href="#caret-down-16"></use>
+                                                                        </svg>
 
-                            <div class="theme-blue-light text trans-nav absolute top-full left-0 right-0 py-24 bg-layer rounded shadow-lg"
-                                data-desktopnav-groupcontent="" inert="">
-                                <div class="grid grid-cols-4">
-                                    <div class="px-24 border-r border-subtle last:border-none pb-24">
-                                        <ul class="flex flex-col gap-y-12">
-                                            <li>
-                                                <div class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                    <a href="topics/artificial-intelligence/artificial-intelligence.html"
-                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
-                                                        aria-label="Artificial Intelligence">
-                                                    </a>
-
-                                                    <div class="relative w-80 flex-shrink-0">
-                                                        <div class="flex justify-center items-center h-full aspect-1/1">
-                                                            <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-enterprise_3200x1600.jpeg')}}"
-                                                                alt="" sizes="80px" loading="lazy"
-                                                                class="w-full h-full object-cover rounded-md">
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 class="outline-none pr-8 f-heading-2 pl-16">
-                                                        Artificial
-                                                        Intelligence
-                                                    </h3>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="px-24 border-r border-subtle last:border-none pb-24">
-                                        <ul class="flex flex-col gap-y-12">
-                                            <li>
-
-                                                <div
-                                                    class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                    <a href="topics/digital-health/digital-health.html"
-                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
-                                                        aria-label="Digital Health"></a>
+                                                                </button>
 
 
-                                                    <div class="relative w-80 flex-shrink-0">
-                                                        <div class="flex justify-center items-center h-full aspect-1/1">
-                                                            <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-medicaltech_3200x1600.webp')}}"
-                                                                alt="" sizes="80px" loading="lazy"
-                                                                class="w-full h-full object-cover rounded-md">
-                                                        </div>
-
-
-                                                    </div>
+                                                                <div class="theme-blue-light text trans-nav absolute top-full left-0 right-0 py-24 bg-layer rounded shadow-lg"
+                                                                        data-desktopnav-groupcontent="" inert="">
+                                                                        <div class="grid grid-cols-4">
+                                                                                <div
+                                                                                        class="px-24 border-r border-subtle last:border-none pb-24">
 
 
 
-                                                    <h3 class="outline-none pr-8 f-heading-2 pl-16">
-                                                        Eventos
-                                                    </h3>
-
-
-                                                </div>
-
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="px-24 border-r border-subtle last:border-none pb-24">
+                                                                                        <ul
+                                                                                                class="flex flex-col gap-y-12">
 
 
 
-                                        <ul class="flex flex-col gap-y-12">
+                                                                                                <li>
+
+                                                                                                        <div
+                                                                                                                class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
+                                                                                                                <a href="/inteligenciaArtificial"
+                                                                                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                                                                                                                        aria-label="Artificial Intelligence"></a>
+
+
+                                                                                                                <div
+                                                                                                                        class="relative w-80 flex-shrink-0">
+                                                                                                                        <div
+                                                                                                                                class="flex justify-center items-center h-full aspect-1/1">
+                                                                                                                                <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-enterprise_3200x1600.jpeg')}}"
+                                                                                                                                        alt=""
+                                                                                                                                        sizes="80px"
+                                                                                                                                        loading="lazy"
+                                                                                                                                        class="w-full h-full object-cover rounded-md">
+                                                                                                                        </div>
+
+
+                                                                                                                </div>
+
+
+
+                                                                                                                <h3
+                                                                                                                        class="outline-none pr-8 f-heading-2 pl-16">
+                                                                                                                        Artificial
+                                                                                                                        Intelligence
+                                                                                                                </h3>
+
+
+                                                                                                        </div>
+
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                <div
+                                                                                        class="px-24 border-r border-subtle last:border-none pb-24">
+
+
+
+                                                                                        <ul
+                                                                                                class="flex flex-col gap-y-12">
 
 
 
 
-                                            <li>
+                                                                                                <li>
 
-                                                <div
-                                                    class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                    <a href="topics/vehicle-tech-and-advanced-mobility/vehicle-tech-and-advanced-mobility.html"
-                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
-                                                        aria-label="Vehicle Tech and Advanced Mobility"></a>
-
-
-                                                    <div class="relative w-80 flex-shrink-0">
-                                                        <div class="flex justify-center items-center h-full aspect-1/1">
-                                                            <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-autotech_3200x1600.jpeg')}}"
-                                                                alt="" sizes="80px" loading="lazy"
-                                                                class="w-full h-full object-cover rounded-md">
-                                                        </div>
+                                                                                                        <div
+                                                                                                                class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
+                                                                                                                <a href="/eventos"
+                                                                                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                                                                                                                        aria-label="Digital Health"></a>
 
 
-                                                    </div>
+                                                                                                                <div
+                                                                                                                        class="relative w-80 flex-shrink-0">
+                                                                                                                        <div
+                                                                                                                                class="flex justify-center items-center h-full aspect-1/1">
+                                                                                                                                <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-medicaltech_3200x1600.webp')}}"
+                                                                                                                                        alt=""
+                                                                                                                                        sizes="80px"
+                                                                                                                                        loading="lazy"
+                                                                                                                                        class="w-full h-full object-cover rounded-md">
+                                                                                                                        </div>
 
 
-
-                                                    <h3 class="outline-none pr-8 f-heading-2 pl-16">
-                                                        Automação
-                                                    </h3>
-
-
-                                                </div>
-
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="px-24 border-r border-subtle last:border-none pb-24">
+                                                                                                                </div>
 
 
 
-                                        <ul class="flex flex-col gap-y-space-1">
+                                                                                                                <h3
+                                                                                                                        class="outline-none pr-8 f-heading-2 pl-16">
+                                                                                                                        Eventos
+                                                                                                                </h3>
 
 
-                                            <li>
+                                                                                                        </div>
 
-                                                <div
-                                                    class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
-                                                    <a href="topics/Robotics/Robotics.html"
-                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
-                                                        aria-label="Vehicle Tech and Advanced Mobility"></a>
-
-
-                                                    <div class="relative w-80 flex-shrink-0">
-                                                        <div class="flex justify-center items-center h-full aspect-1/1">
-                                                            <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-robotic_3200x1600.webp')}}"
-                                                                alt="" sizes="80px" loading="lazy"
-                                                                class="w-full h-full object-cover rounded-md">
-                                                        </div>
-
-
-                                                    </div>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                <div
+                                                                                        class="px-24 border-r border-subtle last:border-none pb-24">
 
 
 
-                                                    <h3 class="outline-none pr-8 f-heading-2 pl-16">
-                                                        Robotica
-                                                    </h3>
-                                                </div>
+                                                                                        <ul
+                                                                                                class="flex flex-col gap-y-12">
 
-                                            </li>
-                                        </ul>
 
-                                        <a href="topics/topics.html"
-                                            class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 mt-24 bg-interactive-on-layer"
-                                            data-behavior="Track" data-track-event="nav_click"
-                                            data-track-data="{&quot;nav_item&quot;:&quot;Explore JYNSGE \u003E View all topics&quot;}">
 
-                                            <span class="pt-1 text-inherit  mr-12">Veja
-                                                todos os
-                                                tópicos</span>
 
-                                            <svg class="icon-transition  shrink-0 pointer-events-none -mr-4" width="20"
-                                                height="20" aria-hidden="true">
-                                                <use xlink:href="#arrow-right-20">
-                                                </use>
-                                            </svg>
+                                                                                                <li>
 
-                                        </a>
+                                                                                                        <div
+                                                                                                                class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
+                                                                                                                <a href="/automacao"
+                                                                                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                                                                                                                        aria-label="Vehicle Tech and Advanced Mobility"></a>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+
+                                                                                                                <div
+                                                                                                                        class="relative w-80 flex-shrink-0">
+                                                                                                                        <div
+                                                                                                                                class="flex justify-center items-center h-full aspect-1/1">
+                                                                                                                                <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-autotech_3200x1600.jpeg')}}"
+                                                                                                                                        alt=""
+                                                                                                                                        sizes="80px"
+                                                                                                                                        loading="lazy"
+                                                                                                                                        class="w-full h-full object-cover rounded-md">
+                                                                                                                        </div>
+
+
+                                                                                                                </div>
+
+
+
+                                                                                                                <h3
+                                                                                                                        class="outline-none pr-8 f-heading-2 pl-16">
+                                                                                                                        Automação
+                                                                                                                </h3>
+
+
+                                                                                                        </div>
+
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                <div
+                                                                                        class="px-24 border-r border-subtle last:border-none pb-24">
+
+
+
+                                                                                        <ul
+                                                                                                class="flex flex-col gap-y-space-1">
+
+
+                                                                                                <li>
+
+                                                                                                        <div
+                                                                                                                class="relative flex items-center bg-interactive-on-layer rounded transition p-8 hover:bg-mix-interactive-on-background-8 theme-blue-light ">
+                                                                                                                <a href="/robotica"
+                                                                                                                        class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                                                                                                                        aria-label="Vehicle Tech and Advanced Mobility"></a>
+
+
+                                                                                                                <div
+                                                                                                                        class="relative w-80 flex-shrink-0">
+                                                                                                                        <div
+                                                                                                                                class="flex justify-center items-center h-full aspect-1/1">
+                                                                                                                                <img src="{{URL ('assets/media/24-cta-2523_ces25-topicpage-ai-robotic_3200x1600.webp')}}"
+                                                                                                                                        alt=""
+                                                                                                                                        sizes="80px"
+                                                                                                                                        loading="lazy"
+                                                                                                                                        class="w-full h-full object-cover rounded-md">
+                                                                                                                        </div>
+
+
+                                                                                                                </div>
+
+
+
+                                                                                                                <h3
+                                                                                                                        class="outline-none pr-8 f-heading-2 pl-16">
+                                                                                                                        Robotica
+                                                                                                                </h3>
+                                                                                                        </div>
+
+                                                                                                </li>
+                                                                                        </ul>
+
+                                                                                        <a href="/todosTopicos"
+                                                                                                class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 mt-24 bg-interactive-on-layer"
+                                                                                                data-behavior="Track"
+                                                                                                data-track-event="nav_click"
+                                                                                                data-track-data="{&quot;nav_item&quot;:&quot;Explore JYNSGE \u003E View all topics&quot;}">
+
+                                                                                                <span
+                                                                                                        class="pt-1 text-inherit  mr-12">Veja
+                                                                                                        todos os
+                                                                                                        tópicos</span>
+
+                                                                                                <svg class="icon-transition  shrink-0 pointer-events-none -mr-4"
+                                                                                                        width="20"
+                                                                                                        height="20"
+                                                                                                        aria-hidden="true">
+                                                                                                        <use
+                                                                                                                xlink:href="#arrow-right-20">
+                                                                                                        </use>
+                                                                                                </svg>
+
+                                                                                        </a>
+
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </li>
 
                     </ul>
                 </nav>
@@ -256,19 +316,19 @@
                                             <!-- Settings Dropdown -->
                                             <div>{{ Auth::user()->name }}</div>
 
-                                            <x-dropdown-link :href="route('profile.edit')">
+                                            <a href="{{route('profile.edit')}}">
                                                 {{ __('Profile') }}
-                                            </x-dropdown-link>
+                                            </a>
 
                                             <!-- Authentication -->
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
 
-                                                <x-dropdown-link :href="route('logout')"
+                                                <a href="{{route('logout')}}"
                                                         onclick="event.preventDefault();
                                                                     this.closest('form').submit();">
                                                     {{ __('Log Out') }}
-                                                </x-dropdown-link>
+                                                </a>
                                             </form>
                                         </div>
                                 </li>

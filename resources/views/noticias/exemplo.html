@@ -1,0 +1,677 @@
+import './style.css';
+import Quill from 'quill';
+
+document.querySelector('#app').innerHTML = `
+  <div class="container">
+    <header class="app-header">
+      <h1 class="app-title">News Article Publisher</h1>
+      <p class="app-subtitle">Create and preview your news articles before publishing</p>
+    </header>
+    
+    <div class="content-wrapper">
+      <section class="form-section">
+        <h2 class="form-title">Article Details</h2>
+        <form id="articleForm">
+          <div class="form-group">
+            <label for="title" class="form-label">Title *</label>
+            <input type="text" id="title" class="form-input" placeholder="Enter article title" required>
+            <span class="form-error">Title is required</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Main Image *</label>
+            <div id="mainImageUpload" class="image-upload-container">
+              <div class="image-upload-icon">📷</div>
+              <p class="image-upload-text">Click to upload main image</p>
+              <img id="mainImagePreview" class="image-upload-preview" alt="Main image preview">
+              <input type="file" id="mainImageInput" class="image-upload-input" accept="image/*">
+            </div>
+            <span class="form-error">Please upload a main image</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="summary" class="form-label">Summary *</label>
+            <textarea id="summary" class="form-textarea" placeholder="Write a brief summary of your article" required></textarea>
+            <span class="form-error">Summary is required</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="content" class="form-label">Full Text *</label>
+            <div id="editor-container"></div>
+            <span class="form-error">Content is required</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="publishDate" class="form-label">Publication Date *</label>
+            <input type="date" id="publishDate" class="form-input" required>
+            <span class="form-error">Publication date is required</span>
+          </div>
+          
+          <button type="submit" class="btn btn-publish">Publish Article</button>
+          <div id="successMessage" class="success-message">
+            Article published successfully!
+          </div>
+        </form>
+      </section>
+      
+      <section class="preview-section">
+        <h2 class="preview-title">Live Preview</h2>
+        <div class="preview-article">
+          <h1 id="previewTitle" class="preview-article-title">Your Article Title</h1>
+          
+          <div class="preview-article-meta">
+            <span id="previewDate" class="preview-article-date">Publication Date: DD/MM/YYYY</span>
+          </div>
+          
+          <div id="previewImageContainer">
+            <div class="preview-article-image-placeholder">
+              Image will appear here
+            </div>
+          </div>
+          
+          <p id="previewSummary" class="preview-article-summary">Your article summary will appear here...</p>
+          
+          <div id="previewContent" class="preview-article-content">
+            Your full article content will appear here...
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+`;
+
+// DOM Elements
+const form = document.getElementById('articleForm');
+const titleInput = document.getElementById('title');
+const mainImageUpload = document.getElementById('mainImageUpload');
+const mainImageInput = document.getElementById('mainImageInput');
+const mainImagePreview = document.getElementById('mainImagePreview');
+const summaryInput = document.getElementById('summary');
+const publishDateInput = document.getElementById('publishDate');
+const successMessage = document.getElementById('successMessage');
+
+// Preview Elements
+const previewTitle = document.getElementById('previewTitle');
+const previewDate = document.getElementById('previewDate');
+const previewImageContainer = document.getElementById('previewImageContainer');
+const previewSummary = document.getElementById('previewSummary');
+const previewContent = document.getElementById('previewContent');
+
+// Initialize Quill editor
+const quillToolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],
+  ['blockquote', 'code-block'],
+  [{ 'header': 1 }, { 'header': 2 }],
+  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+  [{ 'script': 'sub' }, { 'script': 'super' }],
+  [{ 'indent': '-1' }, { 'indent': '+1' }],
+  [{ 'direction': 'rtl' }],
+  [{ 'size': ['small', false, 'large', 'huge'] }],
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  [{ 'color': [] }, { 'background': [] }],
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+  ['clean'],
+  ['link', 'image']
+];
+
+const quill = new Quill('#editor-container', {
+  modules: {
+    toolbar: quillToolbarOptions
+  },
+  placeholder: 'Write your full article here...',
+  theme: 'snow'
+});
+
+// Format date as DD/MM/YYYY
+function formatDate(dateString) {
+  if (!dateString) return 'Publication Date: DD/MM/YYYY';
+  
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  
+  return `Publication Date: ${day}/${month}/${year}`;
+}
+
+// Handle main image upload
+mainImageUpload.addEventListener('click', () => {
+  mainImageInput.click();
+});
+
+mainImageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      mainImagePreview.src = event.target.result;
+      mainImageUpload.classList.add('has-image');
+      updatePreview();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Update preview in real-time
+function updatePreview() {
+  // Update title
+  previewTitle.textContent = titleInput.value || 'Your Article Title';
+  
+  // Update date
+  previewDate.textContent = formatDate(publishDateInput.value);
+  
+  // Update image
+  if (mainImagePreview.src && mainImageUpload.classList.contains('has-image')) {
+    previewImageContainer.innerHTML = `
+      <img src="${mainImagePreview.src}" alt="Article image" class="preview-article-image">
+    `;
+  } else {
+    previewImageContainer.innerHTML = `
+      <div class="preview-article-image-placeholder">
+        Image will appear here
+      </div>
+    `;
+  }
+  
+  // Update summary
+  previewSummary.textContent = summaryInput.value || 'Your article summary will appear here...';
+  
+  // Update content
+  const quillContent = quill.root.innerHTML;
+  if (quillContent !== '<p><br></p>') {
+    previewContent.innerHTML = quillContent;
+  } else {
+    previewContent.textContent = 'Your full article content will appear here...';
+  }
+}
+
+// Validate form fields
+function validateField(field) {
+  if (field.validity.valid) {
+    field.classList.remove('error');
+    return true;
+  } else {
+    field.classList.add('error');
+    return false;
+  }
+}
+
+// Validate Quill editor
+function validateQuill() {
+  const quillContent = quill.getText().trim();
+  const quillContainer = document.querySelector('.ql-container');
+  const quillToolbar = document.querySelector('.ql-toolbar');
+  
+  if (quillContent.length > 0) {
+    quillContainer.classList.remove('error');
+    quillToolbar.classList.remove('error');
+    return true;
+  } else {
+    quillContainer.classList.add('error');
+    quillToolbar.classList.add('error');
+    return false;
+  }
+}
+
+// Validate image upload
+function validateImageUpload() {
+  if (mainImageUpload.classList.contains('has-image')) {
+    mainImageUpload.classList.remove('error');
+    return true;
+  } else {
+    mainImageUpload.classList.add('error');
+    return false;
+  }
+}
+
+// Add event listeners for real-time preview
+titleInput.addEventListener('input', updatePreview);
+summaryInput.addEventListener('input', updatePreview);
+publishDateInput.addEventListener('input', updatePreview);
+quill.on('text-change', updatePreview);
+
+// Add validation on blur
+titleInput.addEventListener('blur', () => validateField(titleInput));
+summaryInput.addEventListener('blur', () => validateField(summaryInput));
+publishDateInput.addEventListener('blur', () => validateField(publishDateInput));
+quill.on('blur', validateQuill);
+
+// Form submission
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // Validate all fields
+  const isTitleValid = validateField(titleInput);
+  const isImageValid = validateImageUpload();
+  const isSummaryValid = validateField(summaryInput);
+  const isContentValid = validateQuill();
+  const isDateValid = validateField(publishDateInput);
+  
+  // If all required fields are valid
+  if (isTitleValid && isImageValid && isSummaryValid && isContentValid && isDateValid) {
+    // Show success message
+    successMessage.classList.add('show');
+    
+    // Hide success message after 3 seconds
+    setTimeout(() => {
+      successMessage.classList.remove('show');
+    }, 3000);
+    
+    // In a real application, you would send the data to a server here
+    console.log('Article published:', {
+      title: titleInput.value,
+      image: mainImagePreview.src,
+      summary: summaryInput.value,
+      content: quill.root.innerHTML,
+      publishDate: publishDateInput.value
+    });
+  }
+});
+
+// Initialize preview
+updatePreview();
+
+// Set default date to today
+const today = new Date();
+const year = today.getFullYear();
+const month = (today.getMonth() + 1).toString().padStart(2, '0');
+const day = today.getDate().toString().padStart(2, '0');
+publishDateInput.value = `${year}-${month}-${day}`;
+updatePreview();
+
+// Handle image upload in Quill editor
+const toolbar = quill.getModule('toolbar');
+toolbar.addHandler('image', () => {
+  const input = document.createElement('input');
+  input.setAttribute('type', 'file');
+  input.setAttribute('accept', 'image/*');
+  input.click();
+  
+  input.onchange = () => {
+    const file = input.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const range = quill.getSelection(true);
+        quill.insertEmbed(range.index, 'image', e.target.result);
+        quill.setSelection(range.index + 1);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+});
+
+<style>
+    :root {
+  --primary-color: #1a73e8;
+  --primary-light: #e8f0fe;
+  --primary-dark: #0d47a1;
+  --text-color: #202124;
+  --text-secondary: #5f6368;
+  --background-color: #ffffff;
+  --background-secondary: #f8f9fa;
+  --border-color: #dadce0;
+  --error-color: #d93025;
+  --success-color: #188038;
+  --border-radius: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --transition: all 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-secondary);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-title {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 992px) {
+  .content-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-section {
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.form-title {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-error {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: var(--error-color);
+}
+
+.form-input.error + .form-error,
+.form-textarea.error + .form-error,
+.ql-container.error + .form-error,
+.image-upload-container.error + .form-error {
+  display: block;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.btn-publish {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+.preview-section {
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.preview-title {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.preview-article {
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  min-height: 300px;
+  background-color: var(--background-secondary);
+  overflow-y: auto;
+  max-height: 800px;
+}
+
+.preview-article-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.preview-article-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.preview-article-date {
+  margin-right: 1rem;
+}
+
+.preview-article-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+.preview-article-image-placeholder {
+  width: 100%;
+  height: 200px;
+  background-color: var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.preview-article-summary {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.preview-article-content {
+  color: var(--text-color);
+}
+
+.success-message {
+  background-color: var(--success-color);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  text-align: center;
+  display: none;
+}
+
+.success-message.show {
+  display: block;
+}
+
+/* Image upload styles */
+.image-upload-container {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.image-upload-container:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+.image-upload-container.has-image {
+  border-style: solid;
+  padding: 0.5rem;
+}
+
+.image-upload-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.image-upload-text {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.image-upload-preview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: var(--border-radius);
+  display: none;
+}
+
+.image-upload-container.has-image .image-upload-preview {
+  display: block;
+}
+
+.image-upload-container.has-image .image-upload-icon,
+.image-upload-container.has-image .image-upload-text {
+  display: none;
+}
+
+.image-upload-input {
+  display: none;
+}
+
+/* Quill editor styles */
+.ql-container {
+  height: 250px !important;
+  margin-bottom: 0.5rem;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  font-family: 'Inter', sans-serif !important;
+}
+
+.ql-toolbar {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.ql-editor {
+  font-size: 1rem;
+}
+
+.ql-editor.ql-blank::before {
+  font-style: normal;
+  color: var(--text-secondary);
+}
+
+.ql-container.error,
+.ql-toolbar.error {
+  border-color: var(--error-color) !important;
+}
+
+/* Custom Quill button */
+.ql-formats button.ql-image-upload {
+  width: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px 5px;
+  color: #444;
+  font-size: 14px;
+}
+
+.ql-formats button.ql-image-upload:hover {
+  color: var(--primary-color);
+}
+
+.ql-formats button.ql-image-upload::after {
+  content: "📷";
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .form-section,
+  .preview-section {
+    padding: 1.5rem;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .ql-container {
+    height: 200px !important;
+  }
+}
+</style>
