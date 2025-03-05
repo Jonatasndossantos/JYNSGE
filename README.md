@@ -33,9 +33,8 @@ DB_PASSWORD=
 ```bash
 php artisan migrate
 ```
-```php
-#se ele pedir para criar algum arquivo, digite yes.
-```
+se ele pedir para criar algum arquivo, digite *yes*.
+
 
 6. Inicie o servidor:
 ```bash

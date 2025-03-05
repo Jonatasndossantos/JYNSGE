@@ -5,21 +5,30 @@
         <div class="min-h-[35rem] w-full bg-default text-primary">
             <div class="container mx-auto px-4 py-8">
                 <div class="md:w-10-cols xl:w-8-cols">
-                    <h1 class="f-display-1 text-secondary mb-8">
-                        Create and Preview News Article
-                    </h1>
+                    <div class="flex items-center justify-between mb-8">
+                        <h1 class="f-display-1 text-secondary">
+                            Edit News Article
+                        </h1>
+                        <a href="{{ route('profile.edit') }}" 
+                           class="text-gray-600 hover:text-gray-900 flex items-center space-x-1">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                            <span>Back to Profile</span>
+                        </a>
+                    </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <!-- Article Form Section -->
                         <div class="bg-layer rounded-lg p-6 shadow-sm">
-                            <form action="{{ route('noticias.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="return prepareSubmission()">
+                            <form action="{{ route('noticias.update', $noticia) }}" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="return prepareSubmission()">
                                 @csrf
+                                @method('PUT')
 
                                 <div>
                                     <label for="titulo" class="block f-body-2 text-secondary mb-2">Title *</label>
                                     <input type="text" 
                                            name="titulo" 
                                            id="titulo" 
+                                           value="{{ old('titulo', $noticia->titulo) }}"
                                            class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
                                            placeholder="Enter article title"
                                            required>
@@ -35,7 +44,7 @@
                                         @foreach($categorias as $categoria)
                                             <option value="{{ $categoria->id }}" 
                                                     data-color="{{ $categoria->cor }}"
-                                                    {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
+                                                    {{ old('categoria_id', $noticia->categoria_id) == $categoria->id ? 'selected' : '' }}>
                                                 {{ $categoria->nome }}
                                             </option>
                                         @endforeach
@@ -43,48 +52,33 @@
                                 </div>
 
                                 <div>
-                                    <label class="block f-body-2 text-secondary mb-2">Main Image *</label>
+                                    <label class="block f-body-2 text-secondary mb-2">Main Image</label>
                                     <div class="border-2 border-dashed border-subtle rounded-lg p-6 text-center cursor-pointer hover:border-primary hover:bg-primary/5 transition" id="imageUploadContainer">
-                                        <div class="image-upload-placeholder">
+                                        <div class="image-upload-placeholder {{ $noticia->linkImg ? 'hidden' : '' }}">
                                             <svg class="w-12 h-12 mx-auto text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
                                             <p class="f-body-2 text-secondary">Click to upload or drag and drop</p>
                                             <p class="text-sm text-tertiary mt-1">PNG, JPG, GIF up to 10MB</p>
                                         </div>
-                                        <img id="imagePreview" class="hidden max-h-48 mx-auto rounded-lg" alt="Image preview">
+                                        <img id="imagePreview" 
+                                             src="{{ $noticia->linkImg ? asset('storage/' . $noticia->linkImg) : '' }}" 
+                                             class="{{ $noticia->linkImg ? '' : 'hidden' }} max-h-48 mx-auto rounded-lg" 
+                                             alt="Image preview">
                                         <input type="file" 
                                                name="linkImg" 
                                                id="linkImg" 
                                                class="hidden"
-                                               accept="image/*"
-                                               required>
+                                               accept="image/*">
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="resumo" class="block f-body-2 text-secondary mb-2">Summary *</label>
-                                    <textarea name="resumo" 
-                                              id="resumo" 
-                                              rows="3" 
-                                              class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                              placeholder="Write a brief summary of your article"
-                                              required></textarea>
-                                </div>
-
-                                <div>
-                                    <label for="texto" class="block f-body-2 text-secondary mb-2">Full Text *</label>
-                                    <div id="editor" class="min-h-[300px] border border-subtle rounded-lg"></div>
+                                    <label for="conteudo" class="block f-body-2 text-secondary mb-2">Full Text *</label>
+                                    <div id="editor" class="min-h-[300px] border border-subtle rounded-lg">
+                                        {!! old('conteudo', $noticia->conteudo) !!}
+                                    </div>
                                     <input type="hidden" name="conteudo" id="conteudoHidden">
-                                </div>
-
-                                <div>
-                                    <label for="dtPublicacao" class="block f-body-2 text-secondary mb-2">Publication Date *</label>
-                                    <input type="date" 
-                                           name="dtPublicacao" 
-                                           id="dtPublicacao" 
-                                           class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                           required>
                                 </div>
 
                                 <div>
@@ -93,16 +87,16 @@
                                             id="status" 
                                             class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
                                             required>
-                                        <option value="rascunho">Draft</option>
-                                        <option value="publicado">Published</option>
-                                        <option value="arquivado">Archived</option>
+                                        <option value="rascunho" {{ old('status', $noticia->status) == 'rascunho' ? 'selected' : '' }}>Draft</option>
+                                        <option value="publicado" {{ old('status', $noticia->status) == 'publicado' ? 'selected' : '' }}>Published</option>
+                                        <option value="arquivado" {{ old('status', $noticia->status) == 'arquivado' ? 'selected' : '' }}>Archived</option>
                                     </select>
                                 </div>
 
                                 <div class="flex justify-end pt-6">
                                     <button type="submit" 
                                             class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
-                                        Create Article
+                                        Save Changes
                                     </button>
                                 </div>
                             </form>
@@ -113,24 +107,33 @@
                             <h2 class="f-heading-5 text-secondary mb-6">Live Preview</h2>
                             
                             <div class="preview-content space-y-4">
-                                <h1 id="previewTitle" class="f-heading-4 text-primary">Your Article Title</h1>
+                                <h1 id="previewTitle" class="f-heading-4 text-primary">{{ $noticia->titulo }}</h1>
                                 
                                 <div class="flex items-center space-x-4 text-sm">
-                                    <span id="previewDate" class="text-tertiary">Publication Date: DD/MM/YYYY</span>
-                                    <span id="previewStatus" class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">Draft</span>
-                                    <span id="previewCategoria" class="px-2 py-1 text-xs rounded-full">Select a category</span>
+                                    <span id="previewDate" class="text-tertiary">
+                                        Publication Date: {{ $noticia->published_at ? $noticia->published_at->format('m/d/Y') : 'Not published' }}
+                                    </span>
+                                    <span id="previewStatus" class="px-2 py-1 text-xs rounded-full {{ $noticia->status == 'publicado' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                        {{ ucfirst($noticia->status) }}
+                                    </span>
+                                    <span id="previewCategoria" class="px-2 py-1 text-xs rounded-full"
+                                          style="background-color: {{ $noticia->categoria->cor }}20; color: {{ $noticia->categoria->cor }};">
+                                        {{ $noticia->categoria->nome }}
+                                    </span>
                                 </div>
                                 
                                 <div id="previewImageContainer" class="bg-subtle rounded-lg flex items-center justify-center min-h-[200px]">
-                                    <p class="text-tertiary">Image will appear here</p>
-                                </div>
-                                
-                                <div id="previewSummary" class="f-body-2 text-secondary italic">
-                                    Your article summary will appear here...
+                                    @if($noticia->linkImg)
+                                        <img src="{{ asset('storage/' . $noticia->linkImg) }}" 
+                                             alt="Article preview image" 
+                                             class="w-full h-full object-cover rounded-lg max-h-[200px]">
+                                    @else
+                                        <p class="text-tertiary">Image will appear here</p>
+                                    @endif
                                 </div>
                                 
                                 <div id="previewContent" class="prose max-w-none">
-                                    Your full article content will appear here...
+                                    {!! $noticia->conteudo !!}
                                 </div>
                             </div>
                         </div>
@@ -211,33 +214,25 @@
 
             // Live preview updates
             const titleInput = document.getElementById('titulo');
-            const summaryInput = document.getElementById('resumo');
-            const dateInput = document.getElementById('dtPublicacao');
             const statusInput = document.getElementById('status');
             const categoriaInput = document.getElementById('categoria_id');
             const previewTitle = document.getElementById('previewTitle');
-            const previewDate = document.getElementById('previewDate');
             const previewStatus = document.getElementById('previewStatus');
             const previewCategoria = document.getElementById('previewCategoria');
-            const previewSummary = document.getElementById('previewSummary');
             const previewContent = document.getElementById('previewContent');
             const conteudoHidden = document.getElementById('conteudoHidden');
 
             function updatePreview() {
-                previewTitle.textContent = titleInput.value || 'Your Article Title';
-                previewSummary.textContent = summaryInput.value || 'Your article summary will appear here...';
-                
-                const date = dateInput.value ? new Date(dateInput.value) : null;
-                previewDate.textContent = date 
-                    ? `Publication Date: ${date.toLocaleDateString()}`
-                    : 'Publication Date: DD/MM/YYYY';
+                previewTitle.textContent = titleInput.value;
 
                 const status = statusInput.value;
                 previewStatus.textContent = status.charAt(0).toUpperCase() + status.slice(1);
                 previewStatus.className = `px-2 py-1 text-xs rounded-full ${
-                    status === 'published' 
+                    status === 'publicado' 
                         ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
+                        : status === 'arquivado'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-yellow-100 text-yellow-800'
                 }`;
 
                 const selectedOption = categoriaInput.options[categoriaInput.selectedIndex];
@@ -246,28 +241,17 @@
                     previewCategoria.textContent = selectedOption.text;
                     previewCategoria.style.backgroundColor = color + '20'; // 20 = 12.5% opacity
                     previewCategoria.style.color = color;
-                } else {
-                    previewCategoria.textContent = 'Select a category';
-                    previewCategoria.style.backgroundColor = '';
-                    previewCategoria.style.color = '';
                 }
                 
                 const content = quill.root.innerHTML;
-                previewContent.innerHTML = content || 'Your full article content will appear here...';
+                previewContent.innerHTML = content;
                 conteudoHidden.value = content;
             }
 
             titleInput.addEventListener('input', updatePreview);
-            summaryInput.addEventListener('input', updatePreview);
-            dateInput.addEventListener('input', updatePreview);
             statusInput.addEventListener('change', updatePreview);
             categoriaInput.addEventListener('change', updatePreview);
             quill.on('text-change', updatePreview);
-
-            // Set default date to today
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.value = today;
-            updatePreview();
 
             // Function to prepare form submission
             function prepareSubmission() {
@@ -284,11 +268,11 @@
         <div class="container mx-auto px-4 py-8">
             <div class="text-center">
                 <h2 class="f-display-2 text-secondary mb-4">Access Restricted</h2>
-                <p class="f-body-2 mb-6">You need to be logged in to create a news article.</p>
+                <p class="f-body-2 mb-6">You need to be logged in to edit news articles.</p>
                 <a href="{{ route('login') }}" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
                     Login
                 </a>
             </div>
         </div>
     @endauth
-</x-app-layout>
+</x-app-layout> 

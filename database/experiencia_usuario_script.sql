@@ -5,6 +5,10 @@ use jynsge;
 show tables from jynsge;
 
 select * from users;
+select * from noticias;
+
+drop tables news;
+drop tables categories;
 
 #create table usuario(
 #   codigo int not null primary key auto_increment,
@@ -15,14 +19,6 @@ select * from users;
 #   codigoComentario int not null,
 #   codigoNoticia int not null   
 #)engine = InnoDB;
-
-create table perfil(
-	codigo int not null primary key auto_increment,
-	biografia varchar(120),
-	fotodeperfil varchar(120),
-    codigoPublicacao int not null,
-    codigoUsuario int not null
-)engine = InnoDB;
 
 create table noticia(
 	codigo int not null primary key auto_increment,
@@ -35,6 +31,22 @@ create table noticia(
     
 )engine = InnoDB;
 
+CREATE TABLE categoria (
+    codigo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL UNIQUE,
+    descricao varchar(350)
+) ENGINE = InnoDB;
+
+CREATE TABLE noticiaCategoria (
+    codigoNoticia INT NOT NULL,
+    codigoCategoria INT NOT NULL,
+    PRIMARY KEY (codigoNoticia, codigoCategoria),
+    FOREIGN KEY (codigoNoticia) REFERENCES noticia(codigo) ON DELETE CASCADE,
+    FOREIGN KEY (codigoCategoria) REFERENCES categoria(codigo) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+
+
 create table comentario(
 	codigo int not null primary key auto_increment,
     texto varchar(250),
@@ -42,6 +54,14 @@ create table comentario(
     codigoNoticia int not null,
     codigoUsuario int not null
    
+)engine = InnoDB;
+
+create table perfil(
+	codigo int not null primary key auto_increment,
+	biografia varchar(120),
+	fotodeperfil varchar(120),
+    codigoPublicacao int not null,
+    codigoUsuario int not null
 )engine = InnoDB;
 
 create table publicacao(

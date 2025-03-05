@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Noticia;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,13 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $noticias = Noticia::where('user_id', Auth::id())
+                          ->orderBy('published_at', 'desc')
+                          ->paginate(10);
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'noticias' => $noticias,
         ]);
     }
 

@@ -1,3 +1,5 @@
+
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 <header class="sticky top-0 inset-x-0 z-100 bg text transition-all focus-within:!top-0 theme-blue-dark"
     data-behavior="GlobalHeader">
     <div class="">
@@ -293,7 +295,7 @@
                         <nav class="-mx-3 flex flex-1 justify-end gap-x-4">
                         @if (Route::has('login'))
                             @auth
-                                <ul class="hidden xl:flex items-center gap-x-4" data-behavior="DesktopNav"
+                            <ul class="hidden xl:flex items-center gap-x-4" data-behavior="DesktopNav"
                                     aria-labelledby="headerPrimaryNavLabel">
                                     <li class="shrink-0" data-desktopnav-group="">
                                         <button type="button"
@@ -306,33 +308,43 @@
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <g id="SVGRepo_iconCarrier"> <g> <path d="M22.766,0.001C10.194,0.001,0,10.193,0,22.766s10.193,22.765,22.766,22.765c12.574,0,22.766-10.192,22.766-22.765 S35.34,0.001,22.766,0.001z M22.766,6.808c4.16,0,7.531,3.372,7.531,7.53c0,4.159-3.371,7.53-7.531,7.53 c-4.158,0-7.529-3.371-7.529-7.53C15.237,10.18,18.608,6.808,22.766,6.808z M22.761,39.579c-4.149,0-7.949-1.511-10.88-4.012 c-0.714-0.609-1.126-1.502-1.126-2.439c0-4.217,3.413-7.592,7.631-7.592h8.762c4.219,0,7.619,3.375,7.619,7.592 c0,0.938-0.41,1.829-1.125,2.438C30.712,38.068,26.911,39.579,22.761,39.579z"/> </g> </g>
-
                                             </svg>
-
                                         </button>
+                                            <div class="px-24 theme-blue-light text trans-nav absolute top-full right-0 py-24 bg-layer rounded shadow-lg"
+                                                        data-desktopnav-groupcontent="" inert="">
+                                                <!-- Settings Dropdown -->
 
-                                        <div class="px-24 theme-blue-light text trans-nav absolute top-full right-0 py-24 bg-layer rounded shadow-lg"
-                                            data-desktopnav-groupcontent="" inert="">
-                                            <!-- Settings Dropdown -->
-                                            <div>{{ Auth::user()->name }}</div>
-
-                                            <a href="{{route('profile.edit')}}">
-                                                {{ __('Profile') }}
-                                            </a>
-
-                                            <!-- Authentication -->
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-
-                                                <a href="{{route('logout')}}"
-                                                        onclick="event.preventDefault();
-                                                                    this.closest('form').submit();">
-                                                    {{ __('Log Out') }}
+                                                <div>{{ Auth::user()->name }}</div>
+                                                <a href="{{ route('profile.edit') }}" 
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                                                    role="menuitem">
+                                                    Meu Perfil
                                                 </a>
-                                            </form>
-                                        </div>
-                                </li>
+                                                <a href="{{ route('noticias.create') }}" 
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                                                    role="menuitem">
+                                                    Nova Notícia
+                                                </a>
+                                                <a href="{{ route('categorias.index') }}" 
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                                                    role="menuitem">
+                                                    Gerenciar Categorias
+                                                </a>
+                                                
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <button type="submit" 
+                                                            class="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                                                            role="menuitem">
+                                                        Sair
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                    </li>
                             </ul>
+                                
                             @else
                             <a href="{{ route('login') }}"
                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-accent text-inverse hover:bg-mix-interactive-accent-8 active:bg-mix-interactive-accent-12 f-ui-1 ">
@@ -349,6 +361,7 @@
                                     </button>
                                 </a>
                                 @endif
+
                             @endauth
                         </nav>
                         @endif
