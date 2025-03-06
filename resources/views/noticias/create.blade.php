@@ -1,11 +1,12 @@
 <x-app-layout>
 <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+@include('layouts/header')
   
     @auth
         <div class="min-h-[35rem] w-full bg-default text-primary">
             <div class="container mx-auto px-4 py-8">
-                <div class="md:w-10-cols xl:w-8-cols">
-                    <h1 class="f-display-1 text-secondary mb-8">
+                    <x-alert/>
+                    <h1 class="f-display-1 text-secondary mb-8 rounded-lg">
                         Create and Preview News Article
                     </h1>
 
@@ -26,20 +27,30 @@
                                 </div>
 
                                 <div>
-                                    <label for="categoria_id" class="block f-body-2 text-secondary mb-2">Category *</label>
-                                    <select name="categoria_id" 
-                                            id="categoria_id" 
-                                            class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                            required>
-                                        <option value="">Select a category</option>
-                                        @foreach($categorias as $categoria)
-                                            <option value="{{ $categoria->id }}" 
-                                                    data-color="{{ $categoria->cor }}"
-                                                    {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
-                                                {{ $categoria->nome }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <label for="categorias" class="block f-body-2 text-secondary mb-2">Categorias *</label>
+                                    <div class="relative">
+                                        <select name="categorias[]" 
+                                                id="categorias" 
+                                                class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
+                                                multiple
+                                                size="4"
+                                                required>
+                                            @foreach($categorias as $categoria)
+                                                <option value="{{ $categoria->id }}" 
+                                                        data-color="{{ $categoria->cor }}"
+                                                        class="py-2 px-4 hover:bg-gray-100"
+                                                        {{ in_array($categoria->id, old('categorias', [])) ? 'selected' : '' }}>
+                                                    <div class="flex items-center">
+                                                        <span class="w-3 h-3 rounded-full mr-2" style="background-color: {{ $categoria->cor }}"></span>
+                                                        {{ $categoria->nome }}
+                                                    </div>
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="mt-2 flex flex-wrap gap-2" id="selectedCategories">
+                                            <!-- Selected categories will be displayed here -->
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div>
@@ -121,7 +132,7 @@
                                     <span id="previewCategoria" class="px-2 py-1 text-xs rounded-full">Select a category</span>
                                 </div>
                                 
-                                <div id="previewImageContainer" class="bg-subtle rounded-lg flex items-center justify-center min-h-[200px]">
+                                <div id="previewImageContainer" class="bg-subtle rounded-lg flex items-center justify-center min-h-[300px]">
                                     <p class="text-tertiary">Image will appear here</p>
                                 </div>
                                 
@@ -148,7 +159,6 @@
                         </div>
                     @endif
                 </div>
-            </div>
         </div>
 
         <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
@@ -161,12 +171,8 @@
                     toolbar: [
                         ['bold', 'italic', 'underline', 'strike'],
                         ['blockquote', 'code-block'],
-                        [{ 'header': 1 }, { 'header': 2 }],
                         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        [{ 'script': 'sub'}, { 'script': 'super' }],
-                        [{ 'indent': '-1'}, { 'indent': '+1' }],
-                        [{ 'size': ['small', false, 'large', 'huge'] }],
-                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                        [{ 'header': [1, 2, 3, false, 5, 6] }],
                         [{ 'color': [] }, { 'background': [] }],
                         [{ 'font': [] }],
                         [{ 'align': [] }],
@@ -200,7 +206,7 @@
                         // Update live preview section
                         const previewImageContainer = document.getElementById('previewImageContainer');
                         previewImageContainer.innerHTML = `
-                            <img src="${imageUrl}" alt="Article preview image" class="w-full h-full object-cover rounded-lg max-h-[200px]">
+                            <img src="${imageUrl}" alt="Article preview image" class="w-full h-full object-cover rounded-lg max-h-[300px]">
                         `;
                         
                         updatePreview();
@@ -214,11 +220,9 @@
             const summaryInput = document.getElementById('resumo');
             const dateInput = document.getElementById('dtPublicacao');
             const statusInput = document.getElementById('status');
-            const categoriaInput = document.getElementById('categoria_id');
             const previewTitle = document.getElementById('previewTitle');
             const previewDate = document.getElementById('previewDate');
             const previewStatus = document.getElementById('previewStatus');
-            const previewCategoria = document.getElementById('previewCategoria');
             const previewSummary = document.getElementById('previewSummary');
             const previewContent = document.getElementById('previewContent');
             const conteudoHidden = document.getElementById('conteudoHidden');
@@ -240,28 +244,39 @@
                         : 'bg-yellow-100 text-yellow-800'
                 }`;
 
-                const selectedOption = categoriaInput.options[categoriaInput.selectedIndex];
-                if (selectedOption.value) {
-                    const color = selectedOption.dataset.color;
-                    previewCategoria.textContent = selectedOption.text;
-                    previewCategoria.style.backgroundColor = color + '20'; // 20 = 12.5% opacity
-                    previewCategoria.style.color = color;
-                } else {
-                    previewCategoria.textContent = 'Select a category';
-                    previewCategoria.style.backgroundColor = '';
-                    previewCategoria.style.color = '';
-                }
-                
                 const content = quill.root.innerHTML;
                 previewContent.innerHTML = content || 'Your full article content will appear here...';
                 conteudoHidden.value = content;
+
+                const categoriaSelect = document.getElementById('categorias');
+                const selectedCategories = Array.from(categoriaSelect.selectedOptions).map(option => {
+                    return {
+                        text: option.text,
+                        color: option.dataset.color
+                    };
+                });
+
+                const previewCategoria = document.getElementById('previewCategoria');
+                previewCategoria.innerHTML = '';
+
+                if (selectedCategories.length > 0) {
+                    selectedCategories.forEach(cat => {
+                        const span = document.createElement('span');
+                        span.textContent = cat.text;
+                        span.className = 'px-2 py-1 text-xs rounded-full mr-2 mb-2 inline-block';
+                        span.style.backgroundColor = cat.color + '20';
+                        span.style.color = cat.color;
+                        previewCategoria.appendChild(span);
+                    });
+                } else {
+                    previewCategoria.textContent = 'Select categories';
+                }
             }
 
             titleInput.addEventListener('input', updatePreview);
             summaryInput.addEventListener('input', updatePreview);
             dateInput.addEventListener('input', updatePreview);
             statusInput.addEventListener('change', updatePreview);
-            categoriaInput.addEventListener('change', updatePreview);
             quill.on('text-change', updatePreview);
 
             // Set default date to today

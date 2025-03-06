@@ -17,12 +17,14 @@
                 <div class="p-6">
                     <!-- Categoria e Status -->
                     <div class="flex items-center space-x-4 mb-4">
-                        @if($noticia->categoria)
-                            <span class="px-3 py-1 rounded-full text-sm font-medium" 
-                                  style="background-color: {{ $noticia->categoria->cor }}20; color: {{ $noticia->categoria->cor }};">
-                                {{ $noticia->categoria->nome }}
-                            </span>
-                        @endif
+                        <div class="flex flex-wrap gap-2">
+                            @foreach($noticia->categorias as $categoria)
+                                <span class="px-2 py-1 text-xs rounded-full"
+                                      style="background-color: {{ $categoria->cor }}20; color: {{ $categoria->cor }};">
+                                    {{ $categoria->nome }}
+                                </span>
+                            @endforeach
+                        </div>
                         <span class="px-3 py-1 rounded-full text-sm font-medium {{ 
                             $noticia->status == 'publicado' ? 'bg-green-100 text-green-800' : 
                             ($noticia->status == 'arquivado' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') 

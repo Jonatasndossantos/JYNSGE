@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('conteudo');
             $table->string('linkImg')->nullable();
             $table->enum('status', ['rascunho', 'publicado', 'arquivado'])->default('rascunho'); // enumeracao. 1, 2, 3
-            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

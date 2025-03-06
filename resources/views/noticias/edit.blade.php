@@ -4,7 +4,6 @@
     @auth
         <div class="min-h-[35rem] w-full bg-default text-primary">
             <div class="container mx-auto px-4 py-8">
-                <div class="md:w-10-cols xl:w-8-cols">
                     <div class="flex items-center justify-between mb-8">
                         <h1 class="f-display-1 text-secondary">
                             Edit News Article
@@ -16,141 +15,165 @@
                         </a>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <!-- Article Form Section -->
-                        <div class="bg-layer rounded-lg p-6 shadow-sm">
-                            <form action="{{ route('noticias.update', $noticia) }}" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="return prepareSubmission()">
-                                @csrf
-                                @method('PUT')
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Article Form Section -->
+                    <div class="bg-layer rounded-lg p-6 shadow-sm">
+                        <form action="{{ route('noticias.update', $noticia) }}" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="return prepareSubmission()">
+                            @csrf
+                            @method('PUT')
 
-                                <div>
-                                    <label for="titulo" class="block f-body-2 text-secondary mb-2">Title *</label>
-                                    <input type="text" 
-                                           name="titulo" 
-                                           id="titulo" 
-                                           value="{{ old('titulo', $noticia->titulo) }}"
-                                           class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                           placeholder="Enter article title"
-                                           required>
-                                </div>
+                            <div>
+                                <label for="titulo" class="block f-body-2 text-secondary mb-2">Title *</label>
+                                <input type="text" 
+                                       name="titulo" 
+                                       id="titulo" 
+                                       value="{{ old('titulo', $noticia->titulo) }}"
+                                       class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
+                                       placeholder="Enter article title"
+                                       required>
+                            </div>
 
-                                <div>
-                                    <label for="categoria_id" class="block f-body-2 text-secondary mb-2">Category *</label>
-                                    <select name="categoria_id" 
-                                            id="categoria_id" 
-                                            class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                            required>
-                                        <option value="">Select a category</option>
-                                        @foreach($categorias as $categoria)
-                                            <option value="{{ $categoria->id }}" 
-                                                    data-color="{{ $categoria->cor }}"
-                                                    {{ old('categoria_id', $noticia->categoria_id) == $categoria->id ? 'selected' : '' }}>
-                                                {{ $categoria->nome }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                            <div>
+                                <label for="categorias" class="block f-body-2 text-secondary mb-2">Categories *</label>
+                                <select name="categorias[]" 
+                                        id="categorias" 
+                                        class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
+                                        multiple
+                                        required>
+                                    @foreach($categorias as $categoria)
+                                        <option value="{{ $categoria->id }}" 
+                                                data-color="{{ $categoria->cor }}"
+                                                {{ in_array($categoria->id, old('categorias', $noticia->categorias->pluck('id')->toArray())) ? 'selected' : '' }}>
+                                            {{ $categoria->nome }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                                <div>
-                                    <label class="block f-body-2 text-secondary mb-2">Main Image</label>
-                                    <div class="border-2 border-dashed border-subtle rounded-lg p-6 text-center cursor-pointer hover:border-primary hover:bg-primary/5 transition" id="imageUploadContainer">
-                                        <div class="image-upload-placeholder {{ $noticia->linkImg ? 'hidden' : '' }}">
-                                            <svg class="w-12 h-12 mx-auto text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                            <p class="f-body-2 text-secondary">Click to upload or drag and drop</p>
-                                            <p class="text-sm text-tertiary mt-1">PNG, JPG, GIF up to 10MB</p>
-                                        </div>
-                                        <img id="imagePreview" 
-                                             src="{{ $noticia->linkImg ? asset('storage/' . $noticia->linkImg) : '' }}" 
-                                             class="{{ $noticia->linkImg ? '' : 'hidden' }} max-h-48 mx-auto rounded-lg" 
-                                             alt="Image preview">
-                                        <input type="file" 
-                                               name="linkImg" 
-                                               id="linkImg" 
-                                               class="hidden"
-                                               accept="image/*">
+                            <div>
+                                <label class="block f-body-2 text-secondary mb-2">Main Image</label>
+                                <div class="border-2 border-dashed border-subtle rounded-lg p-6 text-center cursor-pointer hover:border-primary hover:bg-primary/5 transition" id="imageUploadContainer">
+                                    <div class="image-upload-placeholder {{ $noticia->linkImg ? 'hidden' : '' }}">
+                                        <svg class="w-12 h-12 mx-auto text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <p class="f-body-2 text-secondary">Click to upload or drag and drop</p>
+                                        <p class="text-sm text-tertiary mt-1">PNG, JPG, GIF up to 10MB</p>
                                     </div>
+                                    <img id="imagePreview" 
+                                         src="{{ $noticia->linkImg ? asset('storage/' . $noticia->linkImg) : '' }}" 
+                                         class="{{ $noticia->linkImg ? '' : 'hidden' }} max-h-48 mx-auto rounded-lg" 
+                                         alt="Image preview">
+                                    <input type="file" 
+                                           name="linkImg" 
+                                           id="linkImg" 
+                                           class="hidden"
+                                           accept="image/*">
                                 </div>
+                            </div>
 
-                                <div>
-                                    <label for="conteudo" class="block f-body-2 text-secondary mb-2">Full Text *</label>
-                                    <div id="editor" class="min-h-[300px] border border-subtle rounded-lg">
-                                        {!! old('conteudo', $noticia->conteudo) !!}
-                                    </div>
-                                    <input type="hidden" name="conteudo" id="conteudoHidden">
+                            <div>
+                                <label for="resumo" class="block f-body-2 text-secondary mb-2">Summary *</label>
+                                <textarea name="resumo" 
+                                          id="resumo" 
+                                          rows="3" 
+                                          class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
+                                          placeholder="Write a brief summary of your article"
+                                          required>{{ old('resumo', $noticia->resumo) }}</textarea>
+                            </div>
+
+                            <div>
+                                <label for="texto" class="block f-body-2 text-secondary mb-2">Full Text *</label>
+                                <div id="editor" class="min-h-[300px] border border-subtle rounded-lg">
+                                    {!! old('conteudo', $noticia->conteudo) !!}
                                 </div>
+                                <input type="hidden" name="conteudo" id="conteudoHidden">
+                            </div>
 
-                                <div>
-                                    <label for="status" class="block f-body-2 text-secondary mb-2">Status *</label>
-                                    <select name="status" 
-                                            id="status" 
-                                            class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                            required>
-                                        <option value="rascunho" {{ old('status', $noticia->status) == 'rascunho' ? 'selected' : '' }}>Draft</option>
-                                        <option value="publicado" {{ old('status', $noticia->status) == 'publicado' ? 'selected' : '' }}>Published</option>
-                                        <option value="arquivado" {{ old('status', $noticia->status) == 'arquivado' ? 'selected' : '' }}>Archived</option>
-                                    </select>
-                                </div>
+                            <div>
+                                <label for="dtPublicacao" class="block f-body-2 text-secondary mb-2">Publication Date *</label>
+                                <input type="date" 
+                                       name="dtPublicacao" 
+                                       id="dtPublicacao" 
+                                       value="{{ old('dtPublicacao', $noticia->published_at ? $noticia->published_at->format('Y-m-d') : '') }}"
+                                       class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
+                                       required>
+                            </div>
 
-                                <div class="flex justify-end pt-6">
-                                    <button type="submit" 
-                                            class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
-                                        Save Changes
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            <div>
+                                <label for="status" class="block f-body-2 text-secondary mb-2">Status *</label>
+                                <select name="status" 
+                                        id="status" 
+                                        class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
+                                        required>
+                                    <option value="rascunho" {{ old('status', $noticia->status) == 'rascunho' ? 'selected' : '' }}>Draft</option>
+                                    <option value="publicado" {{ old('status', $noticia->status) == 'publicado' ? 'selected' : '' }}>Published</option>
+                                    <option value="arquivado" {{ old('status', $noticia->status) == 'arquivado' ? 'selected' : '' }}>Archived</option>
+                                </select>
+                            </div>
 
-                        <!-- Live Preview Section -->
-                        <div class="bg-layer rounded-lg p-6 shadow-sm">
-                            <h2 class="f-heading-5 text-secondary mb-6">Live Preview</h2>
+                            <div class="flex justify-end pt-6">
+                                <button type="submit" 
+                                        class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Live Preview Section -->
+                    <div class="bg-layer rounded-lg p-6 shadow-sm">
+                        <h2 class="f-heading-5 text-secondary mb-6">Live Preview</h2>
+                        
+                        <div class="preview-content space-y-4">
+                            <h1 id="previewTitle" class="f-heading-4 text-primary">{{ $noticia->titulo }}</h1>
                             
-                            <div class="preview-content space-y-4">
-                                <h1 id="previewTitle" class="f-heading-4 text-primary">{{ $noticia->titulo }}</h1>
-                                
-                                <div class="flex items-center space-x-4 text-sm">
-                                    <span id="previewDate" class="text-tertiary">
-                                        Publication Date: {{ $noticia->published_at ? $noticia->published_at->format('m/d/Y') : 'Not published' }}
-                                    </span>
-                                    <span id="previewStatus" class="px-2 py-1 text-xs rounded-full {{ $noticia->status == 'publicado' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                        {{ ucfirst($noticia->status) }}
-                                    </span>
-                                    <span id="previewCategoria" class="px-2 py-1 text-xs rounded-full"
-                                          style="background-color: {{ $noticia->categoria->cor }}20; color: {{ $noticia->categoria->cor }};">
-                                        {{ $noticia->categoria->nome }}
-                                    </span>
+                            <div class="flex items-center space-x-4 text-sm">
+                                <span id="previewDate" class="text-tertiary">Publication Date: {{ $noticia->published_at ? $noticia->published_at->format('d/m/Y') : 'DD/MM/YYYY' }}</span>
+                                <span id="previewStatus" class="px-2 py-1 text-xs rounded-full">{{ ucfirst($noticia->status) }}</span>
+                                <div id="previewCategoria" class="flex flex-wrap gap-2">
+                                    @foreach($noticia->categorias as $categoria)
+                                        <span class="px-2 py-1 text-xs rounded-full"
+                                              style="background-color: {{ $categoria->cor }}20; color: {{ $categoria->cor }};">
+                                            {{ $categoria->nome }}
+                                        </span>
+                                    @endforeach
                                 </div>
-                                
-                                <div id="previewImageContainer" class="bg-subtle rounded-lg flex items-center justify-center min-h-[200px]">
-                                    @if($noticia->linkImg)
-                                        <img src="{{ asset('storage/' . $noticia->linkImg) }}" 
-                                             alt="Article preview image" 
-                                             class="w-full h-full object-cover rounded-lg max-h-[200px]">
-                                    @else
-                                        <p class="text-tertiary">Image will appear here</p>
-                                    @endif
-                                </div>
-                                
-                                <div id="previewContent" class="prose max-w-none">
-                                    {!! $noticia->conteudo !!}
-                                </div>
+                            </div>
+                            
+                            <div id="previewImageContainer" class="bg-subtle rounded-lg flex items-center justify-center min-h-[300px]">
+                                @if($noticia->linkImg)
+                                    <img src="{{ asset('storage/' . $noticia->linkImg) }}" 
+                                         alt="Article preview image" 
+                                         class="w-full h-full object-cover rounded-lg max-h-[300px]">
+                                @else
+                                    <p class="text-tertiary">Image will appear here</p>
+                                @endif
+                            </div>
+                            
+                            <div id="previewSummary" class="f-body-2 text-secondary italic">
+                                {{ $noticia->resumo }}
+                            </div>
+                            
+                            <div id="previewContent" class="prose max-w-none">
+                                {!! $noticia->conteudo !!}
                             </div>
                         </div>
                     </div>
-
-                    @if ($errors->any())
-                        <div class="mt-6">
-                            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-                                <ul class="list-disc list-inside">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
                 </div>
+
+                @if ($errors->any())
+                    <div class="mt-6">
+                        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                            <ul class="list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+            
             </div>
         </div>
 
@@ -215,10 +238,8 @@
             // Live preview updates
             const titleInput = document.getElementById('titulo');
             const statusInput = document.getElementById('status');
-            const categoriaInput = document.getElementById('categoria_id');
             const previewTitle = document.getElementById('previewTitle');
             const previewStatus = document.getElementById('previewStatus');
-            const previewCategoria = document.getElementById('previewCategoria');
             const previewContent = document.getElementById('previewContent');
             const conteudoHidden = document.getElementById('conteudoHidden');
 
@@ -234,23 +255,40 @@
                             ? 'bg-red-100 text-red-800'
                             : 'bg-yellow-100 text-yellow-800'
                 }`;
-
-                const selectedOption = categoriaInput.options[categoriaInput.selectedIndex];
-                if (selectedOption.value) {
-                    const color = selectedOption.dataset.color;
-                    previewCategoria.textContent = selectedOption.text;
-                    previewCategoria.style.backgroundColor = color + '20'; // 20 = 12.5% opacity
-                    previewCategoria.style.color = color;
-                }
                 
                 const content = quill.root.innerHTML;
                 previewContent.innerHTML = content;
                 conteudoHidden.value = content;
+
+                const categoriaSelect = document.getElementById('categorias');
+                const selectedCategories = Array.from(categoriaSelect.selectedOptions).map(option => {
+                    return {
+                        text: option.text,
+                        color: option.dataset.color
+                    };
+                });
+
+                const previewCategoria = document.getElementById('previewCategoria');
+                
+                previewCategoria.innerHTML = '';
+
+                if (selectedCategories.length > 0) {
+                    selectedCategories.forEach(cat => {
+                        // Preview
+                        const previewSpan = document.createElement('span');
+                        previewSpan.textContent = cat.text;
+                        previewSpan.className = 'px-2 py-1 text-xs rounded-full mr-2 mb-2 inline-block';
+                        previewSpan.style.backgroundColor = cat.color + '20';
+                        previewSpan.style.color = cat.color;
+                        previewCategoria.appendChild(previewSpan);
+                    });
+                } else {
+                    previewCategoria.textContent = 'Selecione as categorias';
+                }
             }
 
             titleInput.addEventListener('input', updatePreview);
             statusInput.addEventListener('change', updatePreview);
-            categoriaInput.addEventListener('change', updatePreview);
             quill.on('text-change', updatePreview);
 
             // Function to prepare form submission

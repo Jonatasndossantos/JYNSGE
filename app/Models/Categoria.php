@@ -27,7 +27,7 @@ class Categoria extends Model
     // Relacionamentos
     public function noticias()
     {
-        return $this->hasMany(Noticia::class);
+        return $this->belongsToMany(Noticia::class, 'categoria_noticia');
     }
 
     // Mutators

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 100)->unique(); //unica
             $table->string('slug', 100)->unique();
-            $table->string('descricao', 255)->nullable();
+            $table->string('descricao', 500)->nullable();
             $table->string('cor', 20)->default('#3B82F6'); // cor padrão azul
             $table->boolean('ativo')->default(true); //padrao verdadeiro
             $table->timestamps();

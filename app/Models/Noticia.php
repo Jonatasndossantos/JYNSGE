@@ -20,7 +20,6 @@ class Noticia extends Model
         'conteudo',
         'linkImg',
         'status',
-        'categoria_id',
         'user_id',
         'published_at'
     ];
@@ -38,6 +37,11 @@ class Noticia extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categorias()
+    {
+        return $this->belongsToMany(Categoria::class, 'categoria_noticia');
     }
 
     // Mutators
