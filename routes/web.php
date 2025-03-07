@@ -36,7 +36,7 @@ Route::get('/termos', function () {
     return view('termos');
 });
 
-Route::get('/topicos', function () {
+Route::get('/todosTopicos', function () {
     return view('todosTopicos');
 });
 
