@@ -1,5 +1,4 @@
 
-<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 <header class="sticky top-0 inset-x-0 z-100 bg text transition-all focus-within:!top-0 theme-blue-dark"
     data-behavior="GlobalHeader">
     <div class="">

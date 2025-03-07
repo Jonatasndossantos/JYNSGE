@@ -66,70 +66,6 @@
                             @enderror
                         </div>
 
-<script>
-// Função para auto-resize do textarea
-function autoResize(textarea) {
-    // Resetar a altura para calcular corretamente
-    textarea.style.height = 'auto';
-    
-    // Definir altura mínima de 4 linhas (aproximadamente 100px)
-    const minHeight = 100;
-    
-    // Calcular nova altura baseada no conteúdo
-    const newHeight = Math.max(textarea.scrollHeight, minHeight);
-    
-    // Definir nova altura com uma pequena margem
-    textarea.style.height = newHeight + 'px';
-}
-
-// Inicializar o auto-resize para textareas existentes
-document.addEventListener('DOMContentLoaded', function() {
-    const textareas = document.querySelectorAll('textarea');
-    textareas.forEach(textarea => {
-        autoResize(textarea);
-        
-        // Também atualizar quando a janela for redimensionada
-        window.addEventListener('resize', () => autoResize(textarea));
-    });
-});
-
-function atualizarContadorAvancado(input, contadorId, maxLength) {
-    const contador = document.getElementById(contadorId);
-    const progresso = document.getElementById('progresso' + contadorId.replace('contador', ''));
-    const comprimento = input.value.length;
-    const porcentagem = (comprimento / maxLength) * 100;
-    
-    contador.textContent = comprimento;
-    progresso.style.width = porcentagem + '%';
-    
-    // Mudar cor baseado no comprimento
-    if (porcentagem < 80) {
-        progresso.classList.remove('bg-yellow-500', 'bg-red-500');
-        progresso.classList.add('bg-blue-500');
-        contador.parentElement.classList.remove('text-yellow-500', 'text-red-500');
-        contador.parentElement.classList.add('text-gray-500');
-    } else if (porcentagem < 90) {
-        progresso.classList.remove('bg-blue-500', 'bg-red-500');
-        progresso.classList.add('bg-yellow-500');
-        contador.parentElement.classList.remove('text-gray-500', 'text-red-500');
-        contador.parentElement.classList.add('text-yellow-500');
-    } else {
-        progresso.classList.remove('bg-blue-500', 'bg-yellow-500');
-        progresso.classList.add('bg-red-500');
-        contador.parentElement.classList.remove('text-gray-500', 'text-yellow-500');
-        contador.parentElement.classList.add('text-red-500');
-    }
-}
-
-// Inicializar contadores para campos preenchidos
-document.addEventListener('DOMContentLoaded', function() {
-    const campos = document.querySelectorAll('input[maxlength]');
-    campos.forEach(campo => {
-        const contadorId = 'contador' + campo.id.charAt(0).toUpperCase() + campo.id.slice(1);
-        atualizarContadorAvancado(campo, contadorId, campo.maxlength);
-    });
-});
-</script>
 
                         <div>
                             <label for="cor" class="block text-sm font-medium text-gray-700 mb-1">Cor *</label>
@@ -188,4 +124,68 @@ document.addEventListener('DOMContentLoaded', function() {
         colorInput.addEventListener('input', updateHexInput);
         updateHexInput(); // Initial value
     </script>
+    <script>
+// Função para auto-resize do textarea
+function autoResize(textarea) {
+    // Resetar a altura para calcular corretamente
+    textarea.style.height = 'auto';
+    
+    // Definir altura mínima de 4 linhas (aproximadamente 100px)
+    const minHeight = 100;
+    
+    // Calcular nova altura baseada no conteúdo
+    const newHeight = Math.max(textarea.scrollHeight, minHeight);
+    
+    // Definir nova altura com uma pequena margem
+    textarea.style.height = newHeight + 'px';
+}
+                
+// Inicializar o auto-resize para textareas existentes
+document.addEventListener('DOMContentLoaded', function() {
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+        autoResize(textarea);
+        
+        // Também atualizar quando a janela for redimensionada
+        window.addEventListener('resize', () => autoResize(textarea));
+    });
+});
+                
+function atualizarContadorAvancado(input, contadorId, maxLength) {
+    const contador = document.getElementById(contadorId);
+    const progresso = document.getElementById('progresso' + contadorId.replace('contador', ''));
+    const comprimento = input.value.length;
+    const porcentagem = (comprimento / maxLength) * 100;
+    
+    contador.textContent = comprimento;
+    progresso.style.width = porcentagem + '%';
+    
+    // Mudar cor baseado no comprimento
+    if (porcentagem < 80) {
+        progresso.classList.remove('bg-yellow-500', 'bg-red-500');
+        progresso.classList.add('bg-blue-500');
+        contador.parentElement.classList.remove('text-yellow-500', 'text-red-500');
+        contador.parentElement.classList.add('text-gray-500');
+    } else if (porcentagem < 90) {
+        progresso.classList.remove('bg-blue-500', 'bg-red-500');
+        progresso.classList.add('bg-yellow-500');
+        contador.parentElement.classList.remove('text-gray-500', 'text-red-500');
+        contador.parentElement.classList.add('text-yellow-500');
+    } else {
+        progresso.classList.remove('bg-blue-500', 'bg-yellow-500');
+        progresso.classList.add('bg-red-500');
+        contador.parentElement.classList.remove('text-gray-500', 'text-yellow-500');
+        contador.parentElement.classList.add('text-red-500');
+    }
+}
+                
+// Inicializar contadores para campos preenchidos
+document.addEventListener('DOMContentLoaded', function() {
+    const campos = document.querySelectorAll('input[maxlength]');
+    campos.forEach(campo => {
+        const contadorId = 'contador' + campo.id.charAt(0).toUpperCase() + campo.id.slice(1);
+        atualizarContadorAvancado(campo, contadorId, campo.maxlength);
+    });
+});
+</script>
 </x-app-layout> 

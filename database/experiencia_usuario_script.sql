@@ -20,12 +20,14 @@ drop tables categories;
 #   codigoNoticia int not null   
 #)engine = InnoDB;
 
+diferenciar o usuario
+
 create table noticia(
 	codigo int not null primary key auto_increment,
     titulo varchar(250),
     linkImg varchar(45),
-    texto Text not null, 
-    resumo varchar(500), 
+    texto Text not null,
+    resumo varchar(500),
     dtPublicacao date,
     codigoUsuario int not null
     
@@ -59,23 +61,24 @@ create table comentario(
 create table perfil(
 	codigo int not null primary key auto_increment,
 	biografia varchar(120),
+    tipo boolean,
 	fotodeperfil varchar(120),
     codigoPublicacao int not null,
     codigoUsuario int not null
 )engine = InnoDB;
 
-create table publicacao(
-	codigo int not null primary key auto_increment,
-	dataPublicacao date,
-    texto text,
-    codigoUsuario int not null
-)engine = InnoDB;
+#create table publicacao(
+#	codigo int not null primary key auto_increment,
+#	dataPublicacao date,
+#    texto text,
+#    codigoUsuario int not null
+#)engine = InnoDB;
 
-create table fazerPerfil(
-	codigo int not null,
-    codigoUsuario int not null,
-    codigoPerfil int not null
-)engine = InnoDB;
+#create table fazerPerfil(
+#	codigo int not null,
+#    codigoUsuario int not null,
+#    codigoPerfil int not null
+#)engine = InnoDB;
 
 alter table estudante drop column nota; -- exclui a coluna da tabela
 

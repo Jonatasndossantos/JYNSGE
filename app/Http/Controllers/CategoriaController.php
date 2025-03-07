@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     {
         try {
             $categorias = Categoria::orderBy('nome')->paginate(10);
-            return view('categorias.index', compact('categorias'));
+            return view('admin.categorias.index', compact('categorias'));
         } catch (Exception $e) {
             Log::error('Erro ao listar categorias: ' . $e->getMessage());
             return redirect()->back()

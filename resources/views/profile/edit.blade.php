@@ -71,7 +71,7 @@
                                        id="searchArticles"
                                        placeholder="Search articles..."
                                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <i data-lucide="search" class="absolute left-3 top-2.5 text-gray-400 w-5 h-5"></i>
+                                
                             </div>
                             <div class="relative w-full md:w-48">
                                 <select id="statusFilter"
@@ -80,7 +80,7 @@
                                     <option value="published">Published</option>
                                     <option value="draft">Draft</option>
                                 </select>
-                                <i data-lucide="filter" class="absolute left-3 top-2.5 text-gray-400 w-5 h-5"></i>
+                                
                             </div>
                         </div>
 
@@ -104,9 +104,9 @@
                                             <h3 class="text-lg font-semibold text-gray-800 truncate">{{ $noticia->titulo }}</h3>
                                             <p class="text-sm text-gray-500">
                                                 @if($noticia->published_at)
-                                                    Published: {{ \Carbon\Carbon::parse($noticia->published_at)->format('F d, Y') }}
+                                                    Publicado: {{ \Carbon\Carbon::parse($noticia->published_at)->format('F d, Y') }}
                                                 @else
-                                                    Last updated: {{ \Carbon\Carbon::parse($noticia->updated_at)->format('F d, Y') }}
+                                                    Ultima alteração: {{ \Carbon\Carbon::parse($noticia->updated_at)->format('F d, Y') }}
                                                 @endif
                                             </p>
                                             <div class="mt-2 flex items-center space-x-2">

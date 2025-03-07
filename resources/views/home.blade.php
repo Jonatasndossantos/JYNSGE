@@ -27,24 +27,21 @@
 
                     </div>
 
-                    <div class="absolute inset-0 overflow-hidden transform-gpu"
-                        style="background: url('{{URL ('assets/media/slogan.gif')}} no-repeat center center; background-size: cover;">
-                        <div
-                            class="hidden xl:block absolute top-full left-0 z-1 w-11/12 2xl:w-10/12 min-w-[1135px] aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                    <div class="absolute inset-0 overflow-hidden transform-gpu h-[50vh] md:h-[60vh] lg:h-[70vh]"
+                        style="background: url('{{URL ('assets/media/slogan.gif')}} no-repeat center center; background-size: cover; max-height: 800px;">
+                        <div class="hidden xl:block absolute top-full left-0 z-1 w-11/12 2xl:w-10/12 min-w-[1135px] aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
 
                             <div class="absolute inset-0 top-full bg-hero-gradient-1" data-homehero-gradients=""
                                 style="top: 5%; translate: none; rotate: none; scale: none; transform: translate(5.6375%, 3.8024%);">
                             </div>
                         </div>
-                        <div
-                            class="absolute top-full left-1/2 z-3 w-11/12 2xl:w-10/12 min-w-[1200px] ml aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                        <div class="absolute top-full left-1/2 z-3 w-11/12 2xl:w-10/12 min-w-[1200px] ml aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                             <div class="absolute inset-0 top-full bg-hero-gradient-3 md:bg-hero-gradient-2"
                                 data-homehero-gradients=""
                                 style="top: 10%; translate: none; rotate: none; scale: none; transform: translate(5.6375%, 3.8024%);">
                             </div>
                         </div>
-                        <div
-                            class="hidden md:block absolute top-full left-full z-2 w-11/12 2xl:w-10/12 min-w-[1425px] aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                        <div class="hidden md:block absolute top-full left-full z-2 w-11/12 2xl:w-10/12 min-w-[1425px] aspect-1/1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                             <div class="absolute inset-0 top-full bg-hero-gradient-3" data-homehero-gradients=""
                                 style="top: 6%; translate: none; rotate: none; scale: none; transform: translate(5.6375%, 3.8024%);">
                             </div>

@@ -16,7 +16,7 @@ class NoticiaController extends Controller
         $noticias = Noticia::with(['categorias', 'user'])
             ->orderBy('published_at', 'desc')
             ->paginate(10); 
-        return view('noticias.index', compact('noticias'));
+        return view('admin.noticias.index', compact('noticias'));
     }
 
     public function create()
@@ -24,7 +24,7 @@ class NoticiaController extends Controller
         $categorias = Categoria::where('ativo', true)
             ->orderBy('nome')
             ->get();
-        return view('noticias.create', compact('categorias'));
+        return view('admin.noticias.create', compact('categorias'));
     }
 
     public function store(Request $request)
@@ -32,7 +32,8 @@ class NoticiaController extends Controller
         try {
             $validated = $request->validate([
                 'titulo' => 'required|max:255',
-                'slug' => 'nullable|max:255|unique:noticias',
+                'slug' => 'nullable|max:255',
+                'resumo' => 'required|max:500',
                 'conteudo' => 'required',
                 'linkImg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'status' => 'required|in:rascunho,publicado,arquivado',
@@ -44,6 +45,7 @@ class NoticiaController extends Controller
             $noticia->titulo = $validated['titulo'];
             $noticia->slug = empty($validated['slug']) ? Str::slug($validated['titulo']) : $validated['slug'];
             $noticia->conteudo = $validated['conteudo'];
+            $noticia->resumo = $validated['resumo'];
             $noticia->status = $validated['status'];
             $noticia->user_id = auth()->id();
 
@@ -74,7 +76,7 @@ class NoticiaController extends Controller
 
     public function show(Noticia $noticia)
     {
-        return view('noticias.show', compact('noticia'));
+        return view('admin.noticias.show', compact('noticia'));
     }
 
     public function edit(Noticia $noticia)
@@ -83,15 +85,16 @@ class NoticiaController extends Controller
         $categorias = Categoria::where('ativo', true)
             ->orderBy('nome')
             ->get();
-        return view('noticias.edit', compact('noticia', 'categorias'));
+        return view('admin.noticias.edit', compact('noticia', 'categorias'));
     }
 
     public function update(Request $request, Noticia $noticia)
     {
         $validated = $request->validate([
             'titulo' => 'required|max:255',
-            'slug' => 'nullable|max:255|unique:noticias,slug,' . $noticia->id,
+            'slug' => 'nullable|max:255' . $noticia->id,
             'conteudo' => 'required',
+            'resumo' => 'required|max:500',
             'linkImg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:rascunho,publicado,arquivado',
             'categorias' => 'required|array',
@@ -102,6 +105,7 @@ class NoticiaController extends Controller
             $noticia->titulo = $validated['titulo'];
             $noticia->slug = empty($validated['slug']) ? Str::slug($validated['titulo']) : $validated['slug'];
             $noticia->conteudo = $validated['conteudo'];
+            $noticia->resumo = $validated['resumo'];
             $noticia->status = $validated['status'];
 
             if ($request->hasFile('linkImg')) {
