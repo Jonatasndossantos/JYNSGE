@@ -176,6 +176,7 @@
 
                                         </div>
                                 </div>
+                            </a>
                             @empty
                                 <p>Nenhuma notícia encontrada nesta categoria.</p>
                             @endforelse

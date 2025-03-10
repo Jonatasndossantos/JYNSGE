@@ -6,6 +6,7 @@ show tables from jynsge;
 
 select * from categorias;
 select * from noticia;
+select * from users;
 
 create table usuario(
    id int not null primary key auto_increment,
@@ -64,6 +65,7 @@ create table perfil(
 
 select * from comentario; -- visualizar todas as colunas da tabela com os 
 select * from noticias; -- visualizar todas as colunas da tabela com os 
+select * from categoria_noticia; -- visualizar todas as colunas da tabela com os 
 
 drop table usuario; -- apaga a tabela inteira
 drop table perfil; -- apaga a tabela inteira

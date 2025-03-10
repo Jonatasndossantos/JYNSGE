@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\NoticiaController;
-use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\admin\NoticiaController;
+use App\Http\Controllers\admin\CategoriaController;
 use App\Http\Controllers\TopicosController;
+use App\Http\Controllers\PerfilController;
 
 // Public routes
 Route::get('/', function () {
@@ -33,4 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::resource('topicos', TopicosController::class);
+
+Route::resource('perfil', PerfilController::class);
+
 require __DIR__.'/auth.php';
