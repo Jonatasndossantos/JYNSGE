@@ -89,7 +89,10 @@
             </div>
 
 
-            <div>
+      
+
+
+      
 
                 <div>
 
@@ -300,7 +303,349 @@
                     </div>
 
 
+                    <div class="block-container-full">
+    <section class="">
+        <header class="container pb-space-4 border-b border-subtle mb-space-5 ">
 
+            <h2 class="outline-none text-secondary f-heading-5">
+                Ultimas noticias
+            </h2>
+
+        </header>
+
+
+        <div class="container mb-space-7">
+
+        </div>
+
+
+        <div class="container">
+            <ul class=" grid grid-cols-1 lg:grid-cols-3 gap-space-1">
+                <li class="">
+
+
+                    <div
+                        class="relative flex flex-col h-full rounded-lg bg-layer text-primary transition p-16 md:px-24 lg:pb-24 lg:px-16 group/card ">
+                        <a href="https://lp.startse.com/eventos/ai-day/?utm_term=&amp;utm_campaign=%5BProdutos+Online%5D+Search_Institucional_StartSe+%7C+Branding+%7C+DSA&amp;utm_source=adwords&amp;utm_medium=ppc&amp;hsa_acc=5481106700&amp;hsa_cam=20882968210&amp;hsa_grp=162193679452&amp;hsa_ad=685272764591&amp;hsa_src=g&amp;hsa_tgt=aud-1730477686759:dsa-19959388920&amp;hsa_kw=&amp;hsa_mt=&amp;hsa_net=adwords&amp;hsa_ver=3&amp;gad_source=1&amp;gclid=Cj0KCQiAlsy5BhDeARIsABRc6Zuug-bTOiEB2B3E23bM4im2B35bkZuDm0rLg0LrZOTTU_DTSx_NyckaAkjOEALw_wcB"
+                            target="_blank"
+                            class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                            aria-label="For Attendees"></a>
+
+                        <div
+                            class="grid grid-cols-1 lg:flex lg:flex-col lg:h-full gap-x-gutter md:grid-cols-2">
+
+                            <div class="relative mb-12 md:mb-0 lg:mb-16 [&amp;_>div]:h-auto">
+                                <div
+                                    class="flex justify-center items-center h-full aspect-16/9">
+                                    <img src="{{URL ('assets/media/start.jpg')}}"
+                                        alt="Logo do evento StartSe"
+                                        class="w-full h-full object-cover rounded-md">
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="flex flex-col flex-grow">
+
+
+                                <h3 class="outline-none f-heading-4">
+                                    StartSe
+                                </h3>
+
+
+                                <div class="mt-16 text-secondary f-body-2">
+                                    <p>Nesta 2ª
+                                        edição,
+                                        você
+                                        verá
+                                        10
+                                        estudos
+                                        de
+                                        caso
+                                        reais
+                                        de
+                                        grandes
+                                        empresas
+                                        que
+                                        estão
+                                        na
+                                        vanguarda
+                                        na
+                                        implementação
+                                        e
+                                        utilização
+                                        da
+                                        IA
+                                        com
+                                        escala
+                                        nos
+                                        resultados.<br>
+                                        Contando
+                                        com
+                                        a
+                                        presença
+                                        de
+                                        Diego
+                                        Barreto,
+                                        Ricardo
+                                        Wagner,
+                                        Paulo
+                                        Camargo,
+                                        entre
+                                        outros.
+                                    </p>
+                                </div>
+
+                                <div class="mt-auto pt-space-6">
+                                    <span
+                                        class="inline-flex justify-end items-center transition-all duration-100 data-[focus-method=key]:focus:outline data-[focus-method=key]:focus:outline-2 data-[focus-method=key]:focus:outline-offset-2 data-[focus-method=key]:focus:outline-interactive-accent whitespace-nowrap disabled:opacity-30 disabled:pointer-events-none rounded-full w-40 h-40 text-primary hover:bg-mix-layer-8 active:bg-mix-layer-12 border-1.5 border-strong f-ui-1 overflow-hidden"
+                                        aria-hidden="true">
+                                        <span
+                                            class="flex -mr-1 group-hover/card:translate-x-1/2 group-hover/card-feature:translate-x-1/2 transition-all duration-300 ease-expressive-standard ">
+                                            <span class="flex justify-center w-40 ">
+                                                <svg width="24" height="24" aria-hidden="true">
+                                                    <use xlink:href="#arrow-right-24">
+                                                    </use>
+                                                </svg>
+
+                                            </span>
+
+                                            <span class="flex justify-center w-40">
+                                                <svg width="24" height="24" aria-hidden="true">
+                                                    <use xlink:href="#arrow-right-24">
+                                                    </use>
+                                                </svg>
+
+                                            </span>
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </li>
+                <li class="">
+
+
+                    <div
+                        class="relative flex flex-col h-full rounded-lg bg-layer text-primary transition p-16 md:px-24 lg:pb-24 lg:px-16 group/card ">
+                        <a href="https://www.festivalpath.com.br/" target="_blank"
+                            class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                            aria-label="For Exhibitors"></a>
+
+                        <div
+                            class="grid grid-cols-1 lg:flex lg:flex-col lg:h-full gap-x-gutter md:grid-cols-2">
+
+                            <div class="relative mb-12 md:mb-0 lg:mb-16 [&amp;_>div]:h-auto">
+                                <div
+                                    class="flex justify-center items-center h-full aspect-16/9">
+                                    <img src="{{URL ('assets/media/path.jpg')}}"
+                                        alt="foto sobre o festival path "
+                                        class="w-full h-full object-cover rounded-md">
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="flex flex-col flex-grow">
+
+
+                                <h3 class="outline-none f-heading-4">
+                                    Festival
+                                    Path
+                                    2025
+                                </h3>
+
+
+                                <div class="mt-16 text-secondary f-body-2">
+                                    <p>O Festival
+                                        Path
+                                        2025
+                                        ocorrerá
+                                        nos
+                                        dias
+                                        25
+                                        e
+                                        26
+                                        de
+                                        maio
+                                        de
+                                        2025
+                                        em
+                                        São
+                                        Paulo,
+                                        Brasil.
+                                        Este
+                                        evento
+                                        é
+                                        reconhecido
+                                        como
+                                        um
+                                        dos
+                                        maiores
+                                        festivais
+                                        de
+                                        inovação
+                                        e
+                                        criatividade
+                                        do
+                                        país,
+                                        reunindo
+                                        uma
+                                        ampla
+                                        gama
+                                        de
+                                        atividades
+                                        que
+                                        incluem
+                                        palestras,
+                                        workshops,
+                                        shows
+                                        e
+                                        exposições.&nbsp;
+                                    </p>
+                                </div>
+
+                                <div class="mt-auto pt-space-6">
+                                    <span
+                                        class="inline-flex justify-end items-center transition-all duration-100 data-[focus-method=key]:focus:outline data-[focus-method=key]:focus:outline-2 data-[focus-method=key]:focus:outline-offset-2 data-[focus-method=key]:focus:outline-interactive-accent whitespace-nowrap disabled:opacity-30 disabled:pointer-events-none rounded-full w-40 h-40 text-primary hover:bg-mix-layer-8 active:bg-mix-layer-12 border-1.5 border-strong f-ui-1 overflow-hidden"
+                                        aria-hidden="true">
+                                        <span
+                                            class="flex -mr-1 group-hover/card:translate-x-1/2 group-hover/card-feature:translate-x-1/2 transition-all duration-300 ease-expressive-standard ">
+                                            <span class="flex justify-center w-40 ">
+                                                <svg width="24" height="24" aria-hidden="true">
+                                                    <use xlink:href="#arrow-right-24">
+                                                    </use>
+                                                </svg>
+
+                                            </span>
+
+                                            <span class="flex justify-center w-40">
+                                                <svg width="24" height="24" aria-hidden="true">
+                                                    <use xlink:href="#arrow-right-24">
+                                                    </use>
+                                                </svg>
+
+                                            </span>
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </li>
+                <li class="">
+
+
+                    <div
+                        class="relative flex flex-col h-full rounded-lg bg-layer text-primary transition p-16 md:px-24 lg:pb-24 lg:px-16 group/card ">
+                        <a href="https://www.futurecom.com.br/pt/home.html" target="_blank"
+                            class="absolute inset-0 after:content-[''] after:absolute after:inset-0 after:z-1"
+                            aria-label="For Media"></a>
+
+                        <div
+                            class="grid grid-cols-1 lg:flex lg:flex-col lg:h-full gap-x-gutter md:grid-cols-2">
+
+                            <div class="relative mb-12 md:mb-0 lg:mb-16 [&amp;_>div]:h-auto">
+                                <div
+                                    class="flex justify-center items-center h-full aspect-16/9">
+                                    <img src="{{URL ('assets/media/com.jpg')}}"
+                                        alt="foto da palestra da futurecom com o logo "
+                                        class="w-full h-full object-cover rounded-md">
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="flex flex-col flex-grow">
+
+
+                                <h3 class="outline-none f-heading-4">
+                                    Futurecom
+                                </h3>
+
+
+                                <div class="mt-16 text-secondary f-body-2">
+                                    <p>O Futurecom
+                                        é
+                                        considerado
+                                        o
+                                        maior
+                                        e
+                                        mais
+                                        influente
+                                        encontro
+                                        de
+                                        tecnologia
+                                        e
+                                        inovação
+                                        da
+                                        América
+                                        Latina,
+                                        focando
+                                        na
+                                        transformação
+                                        digital
+                                        e
+                                        nas
+                                        tendências
+                                        emergentes
+                                        em
+                                        telecomunicações,
+                                        tecnologia
+                                        da
+                                        informação
+                                        e
+                                        conectividade.
+                                    </p>
+                                </div>
+
+                                <div class="mt-auto pt-space-6">
+                                    <span
+                                        class="inline-flex justify-end items-center transition-all duration-100 data-[focus-method=key]:focus:outline data-[focus-method=key]:focus:outline-2 data-[focus-method=key]:focus:outline-offset-2 data-[focus-method=key]:focus:outline-interactive-accent whitespace-nowrap disabled:opacity-30 disabled:pointer-events-none rounded-full w-40 h-40 text-primary hover:bg-mix-layer-8 active:bg-mix-layer-12 border-1.5 border-strong f-ui-1 overflow-hidden"
+                                        aria-hidden="true">
+                                        <span
+                                            class="flex -mr-1 group-hover/card:translate-x-1/2 group-hover/card-feature:translate-x-1/2 transition-all duration-300 ease-expressive-standard ">
+                                            <span class="flex justify-center w-40 ">
+                                                <svg width="24" height="24" aria-hidden="true">
+                                                    <use xlink:href="#arrow-right-24">
+                                                    </use>
+                                                </svg>
+
+                                            </span>
+
+                                            <span class="flex justify-center w-40">
+                                                <svg width="24" height="24" aria-hidden="true">
+                                                    <use xlink:href="#arrow-right-24">
+                                                    </use>
+                                                </svg>
+
+                                            </span>
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </li>
+            </ul>
+        </div>
+
+    </section>
+
+</div>
 
 
 
