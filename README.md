@@ -35,8 +35,13 @@ php artisan migrate
 ```
 se ele pedir para criar algum arquivo, digite *yes*.
 
+6. Execute a criação do local de armazenamento:
+```bash
+php artisan storage:link
+```
 
-6. Inicie o servidor:
+
+7. Inicie o servidor:
 ```bash
 php artisan serve
 ```

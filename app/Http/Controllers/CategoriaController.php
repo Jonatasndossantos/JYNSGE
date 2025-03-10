@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Exception;
+use App\Models\Categoria;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
@@ -23,6 +23,7 @@ class CategoriaController extends Controller
                 ->with('error', 'Ocorreu um erro ao carregar as categorias. Tente novamente mais tarde.');
         }
     }
+
 
     public function create()
     {
@@ -42,23 +43,23 @@ class CategoriaController extends Controller
                 'nome.required' => 'O nome da categoria é obrigatório.',
                 'nome.max' => 'O nome não pode ter mais que 100 caracteres.',
                 'nome.unique' => 'Já existe uma categoria com este nome.',
-                'slug.unique' => 'Este slug já está em uso.',
+                //'slug.unique' => 'Este slug já está em uso.',
                 'descricao.required' => 'A descrição é obrigatória.',
                 'descricao.max' => 'A descrição não pode ter mais que 500 caracteres.',
-                'cor.required' => 'A cor é obrigatória.',
+                //'cor.required' => 'A cor é obrigatória.',
             ];
 
             $validated = $request->validate([
                 'nome' => 'required|max:100|unique:categorias',
-                'slug' => 'nullable|max:100|unique:categorias',
+                //'slug' => 'nullable|max:100|unique:categorias',
                 'descricao' => 'required|max:500',
-                'cor' => 'required|max:20',
-                'ativo' => 'boolean'
+                //'cor' => 'required|max:20',
+                //'ativo' => 'boolean'
             ], $messages);
 
-            if (empty($validated['slug'])) {
-                $validated['slug'] = Str::slug($validated['nome']);
-            }
+            //if (empty($validated['slug'])) {
+           //     $validated['slug'] = Str::slug($validated['nome']);
+           // }
 
             Categoria::create($validated);
 
@@ -102,23 +103,15 @@ class CategoriaController extends Controller
                 'nome.required' => 'O nome da categoria é obrigatório.',
                 'nome.max' => 'O nome não pode ter mais que 100 caracteres.',
                 'nome.unique' => 'Já existe uma categoria com este nome.',
-                'slug.unique' => 'Este slug já está em uso.',
                 'descricao.required' => 'A descrição é obrigatória.',
                 'descricao.max' => 'A descrição não pode ter mais que 500 caracteres.',
-                'cor.required' => 'A cor é obrigatória.',
             ];
 
             $validated = $request->validate([
                 'nome' => 'required|max:100|unique:categorias,nome,' . $categoria->id,
-                'slug' => 'nullable|max:100|unique:categorias,slug,' . $categoria->id,
                 'descricao' => 'required|max:500',
-                'cor' => 'required|max:20',
-                'ativo' => 'boolean'
             ], $messages);
 
-            if (empty($validated['slug'])) {
-                $validated['slug'] = Str::slug($validated['nome']);
-            }
 
             $categoria->update($validated);
 

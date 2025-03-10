@@ -259,7 +259,7 @@
                                                                                                 </li>
                                                                                         </ul>
 
-                                                                                        <a href="/todosTopicos"
+                                                                                        <a href="{{ route('topicos.index') }}"
                                                                                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none px-20 rounded min-w-48 min-h-48 py-12 bg-interactive-on-background hover:bg-mix-interactive-on-background-8 active:bg-mix-interactive-on-background-12 text-primary f-ui-1 mt-24 bg-interactive-on-layer"
                                                                                                 data-behavior="Track"
                                                                                                 data-track-event="nav_click"

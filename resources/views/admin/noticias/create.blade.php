@@ -110,17 +110,6 @@
                                            required>
                                 </div>
 
-                                <div>
-                                    <label for="status" class="block f-body-2 text-secondary mb-2">Status *</label>
-                                    <select name="status" 
-                                            id="status" 
-                                            class="w-full px-4 py-3 border border-subtle rounded-lg focus:outline-none focus:border-primary transition"
-                                            required>
-                                        <option value="rascunho">Draft</option>
-                                        <option value="publicado">Published</option>
-                                        <option value="arquivado">Archived</option>
-                                    </select>
-                                </div>
 
                                 <div class="flex justify-end pt-6">
                                     <button type="submit" 

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->string('titulo', 255);
-            $table->string('slug', 255);
+            //$table->string('slug', 255);
             $table->string('resumo',500);
             $table->text('conteudo');
             $table->string('linkImg')->nullable();
-            $table->enum('status', ['rascunho', 'publicado', 'arquivado'])->default('rascunho'); // enumeracao. 1, 2, 3
+            //$table->enum('status', ['rascunho', 'publicado', 'arquivado'])->default('rascunho'); // enumeracao. 1, 2, 3
             $table->timestamp('published_at')->nullable();
             $table->timestamps(); //dataCriacao e update da noticia
 

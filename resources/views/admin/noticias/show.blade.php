@@ -1,4 +1,6 @@
 <x-app-layout>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  
     @include('layouts/header')
 
     <div class="min-h-screen bg-gray-50">
@@ -19,8 +21,7 @@
                     <div class="flex items-center space-x-4 mb-4">
                         <div class="flex flex-wrap gap-2">
                             @foreach($noticia->categorias as $categoria)
-                                <span class="px-2 py-1 text-xs rounded-full"
-                                      style="background-color: {{ $categoria->cor }}20; color: {{ $categoria->cor }};">
+                                <span class="px-2 py-1 text-xs rounded-full" >
                                     {{ $categoria->nome }}
                                 </span>
                             @endforeach

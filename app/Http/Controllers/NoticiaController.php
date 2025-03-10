@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use App\Models\Categoria;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; //permite guardar arquivos e claro as funçoes pra isso
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage; //permite guardar arquivos e claro as funçoes pra isso
 
 class NoticiaController extends Controller
 {
@@ -21,9 +21,7 @@ class NoticiaController extends Controller
 
     public function create()
     {
-        $categorias = Categoria::where('ativo', true)
-            ->orderBy('nome')
-            ->get();
+        $categorias = Categoria::all();
         return view('admin.noticias.create', compact('categorias'));
     }
 
@@ -32,21 +30,17 @@ class NoticiaController extends Controller
         try {
             $validated = $request->validate([
                 'titulo' => 'required|max:255',
-                'slug' => 'nullable|max:255',
                 'resumo' => 'required|max:500',
                 'conteudo' => 'required',
                 'linkImg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'status' => 'required|in:rascunho,publicado,arquivado',
                 'categorias' => 'required|array',
                 'categorias.*' => 'exists:categorias,id'
             ]);
 
             $noticia = new Noticia();
             $noticia->titulo = $validated['titulo'];
-            $noticia->slug = empty($validated['slug']) ? Str::slug($validated['titulo']) : $validated['slug'];
             $noticia->conteudo = $validated['conteudo'];
             $noticia->resumo = $validated['resumo'];
-            $noticia->status = $validated['status'];
             $noticia->user_id = auth()->id();
 
             if ($request->hasFile('linkImg')) {
@@ -54,14 +48,12 @@ class NoticiaController extends Controller
                 $noticia->linkImg = $path;
             }
 
-            if ($noticia->status === 'publicado') {
-                $noticia->published_at = now();
-            }
 
             $noticia->save();
             
             // Anexa as categorias selecionadas
-            $noticia->categorias()->attach($request->categorias);
+            $noticia->categorias()
+                ->attach($request->categorias); //adiciona as categorias
 
             return redirect()->route('profile.edit')
                 ->with('success', 'Notícia criada com sucesso!');
@@ -76,7 +68,18 @@ class NoticiaController extends Controller
 
     public function show(Noticia $noticia)
     {
-        return view('admin.noticias.show', compact('noticia'));
+        if( isset($noticia)){
+            return view('topicos.noticias', compact('noticia'));
+        }else{
+            return view('topicos.todasNoticias', compact('noticia'));
+        }
+    }
+
+    public function all()
+    {
+        
+        $noticias = Noticia::orderBy('nome')->get();
+        return view('topicos.todasNoticias', compact('noticia'));
     }
 
     public function edit(Noticia $noticia)
@@ -92,21 +95,17 @@ class NoticiaController extends Controller
     {
         $validated = $request->validate([
             'titulo' => 'required|max:255',
-            'slug' => 'nullable|max:255' . $noticia->id,
             'conteudo' => 'required',
             'resumo' => 'required|max:500',
             'linkImg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:rascunho,publicado,arquivado',
             'categorias' => 'required|array',
             'categorias.*' => 'exists:categorias,id'
         ]);
 
         try {
             $noticia->titulo = $validated['titulo'];
-            $noticia->slug = empty($validated['slug']) ? Str::slug($validated['titulo']) : $validated['slug'];
             $noticia->conteudo = $validated['conteudo'];
             $noticia->resumo = $validated['resumo'];
-            $noticia->status = $validated['status'];
 
             if ($request->hasFile('linkImg')) {
                 if ($noticia->linkImg) {

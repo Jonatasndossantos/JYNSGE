@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100)->unique(); //unica
-            $table->string('slug', 100)->unique();
+            //$table->string('slug', 100)->unique();
             $table->string('descricao', 500)->nullable();
             //$table->string('cor', 20)->default('#3B82F6'); // cor padrão azul tirar
             //$table->boolean('ativo')->default(true); //padrao verdadeiro

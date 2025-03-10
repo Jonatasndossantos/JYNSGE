@@ -1,6 +1,7 @@
 <x-app-layout>
     @include('layouts/header')
-    
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  
     <div class="min-h-screen bg-gray-50">
         <div class="container mx-auto px-4 py-8">
             <div class="bg-white rounded-lg shadow-md p-6">
@@ -29,10 +30,8 @@
                     <table class="w-full">
                         <thead>
                             <tr class="bg-gray-50 border-b">
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cor</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notícias</th>
                                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
                             </tr>
@@ -40,21 +39,14 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @forelse($categorias as $categoria)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="w-6 h-6 rounded" style="background-color: {{ $categoria->cor }}"></div>
-                                    </td>
+                                    
                                     <td class="px-6 py-4">
                                         <div class="text-sm font-medium text-gray-900">{{ $categoria->nome }}</div>
-                                        <div class="text-sm text-gray-500">{{ $categoria->slug }}</div>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="text-sm text-gray-900">{{ Str::limit($categoria->descricao, 50) }}</div>
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $categoria->ativo ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                            {{ $categoria->ativo ? 'Ativo' : 'Inativo' }}
-                                        </span>
-                                    </td>
+                                    
                                     <td class="px-6 py-4">
                                         <div class="text-sm text-gray-900">{{ $categoria->noticias->count() }}</div>
                                     </td>
