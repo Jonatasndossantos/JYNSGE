@@ -18,9 +18,11 @@ class Perfil extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'bio',
         'biografia',
         'linkImg',
-        'tipoUsuario',
+        'sociais',
+        'tipoUser',
         'user_id',
     ];
 
