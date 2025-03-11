@@ -17,26 +17,20 @@ class PerfilController extends Controller
     {
         $user = auth()->user(); // Assuming the user is authenticated
         $perfil = Perfil::with(['user'])->where('user_id', $user->id)->first();
+        return view('perfil.index', compact('perfil'));
         
         // Prepare user data
         $userData = [
-            'username' => $user->username,
-            'fullName' => $user->name,
-            'shortBio' => $perfil->biografia,
-            'profileImage' => $perfil->linkImg,
-            'bio' => $perfil->biografia,
-            'stats' => [
-                'articlesPublished' => 42, // Replace with actual data
-                'followers' => 1337, // Replace with actual data
-                'following' => 890, // Replace with actual data
-                'createdAt' => $user->created_at,
-            ],
-            'socials' => [
-                'github' => 'https://github.com', // Replace with actual data
-                'twitter' => 'https://twitter.com', // Replace with actual data
-                'linkedin' => 'https://linkedin.com', // Replace with actual data
-            ],
-            'articles' => [], // Fetch articles related to the user
+            'name' => $user->name,
+            'email' => $user->email,
+            
+            'bio' => $perfil->bio,
+            'biografia' => $perfil->biografia,
+            'linkImg' => $perfil->linkImg,
+            
+            'sociais' => $perfil->sociais,
+            
+            'tipoUser' => $perfil->tipoUser
         ];
 
         return view('perfil.index', compact('userData'));
@@ -47,7 +41,8 @@ class PerfilController extends Controller
      */
     public function create()
     {
-        //
+        $perfil = Perfil::all();
+        return view('perfil.create', compact('perfil'));
     }
 
     /**
@@ -56,20 +51,24 @@ class PerfilController extends Controller
     public function store(StorePerfilRequest $request)
     {
         $validated = $request->validate([
+            'bio' => 'required|max:500',
             'biografia' => 'required',
-            'linkImg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tipoUsuario' => 'required',
+            'linkImg' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sociais' => 'array',
+            'tipoUser' => 'required'
         ]);
 
         $perfil = new Perfil();
+        $perfil->bio = $validated['bio'];
         $perfil->biografia = $validated['biografia'];
-        $perfil->tipoUsuario = $validated['tipoUsuario'];
+        $perfil->sociais = $validated['sociais'];
+        $perfil->tipoUser = $validated['tipoUser'];
         $perfil->user_id = auth()->id();
 
         if ($request->hasFile('linkImg')) {
             $path = $request->file('linkImg')->store('perfil', 'public');
             $perfil->linkImg = $path;
-        }
+        }       
 
 
         $perfil->save();
@@ -84,7 +83,7 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        //
+        return view('', compact('perfil'));
     }
 
     /**
@@ -101,13 +100,17 @@ class PerfilController extends Controller
     public function update(Request $request, Perfil $perfil)
     {
         $validated = $request->validate([
+            'bio' => 'required|max:500',
             'biografia' => 'required',
-            'linkImg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tipoUsuario' => 'required|boolean',
+            'linkImg' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sociais' => 'array',
+            'tipoUser' => 'required'
         ]);
 
+        $perfil->bio = $validated['bio'];
         $perfil->biografia = $validated['biografia'];
-        $perfil->tipoUsuario = $validated['tipoUsuario'];
+        $perfil->sociais = $validated['sociais'];
+        $perfil->tipoUser = $validated['tipoUser'];
 
         if ($request->hasFile('linkImg')) {
             $path = $request->file('linkImg')->store('perfil', 'public');
@@ -116,7 +119,7 @@ class PerfilController extends Controller
 
         $perfil->save();
 
-        return redirect()->route('perfil.index')->with('success', 'Perfil atualizado com sucesso!');
+        return redirect()->route('perfil.edit')->with('success', 'Perfil atualizado com sucesso!');
     }
 
     /**
@@ -124,6 +127,13 @@ class PerfilController extends Controller
      */
     public function destroy(Perfil $perfil)
     {
-        //
+        if (perfil->linkImg) {
+            Storage::disk('public')->delete(perfil->linkImg); //
+        }
+
+        perfil->delete();
+
+        return redirect()->route('home')
+            ->with('success', 'Perfil excluída com sucesso!');
     }
 }
