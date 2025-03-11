@@ -49,10 +49,7 @@ tabela categorias
 Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100)->unique(); //unica
-            $table->string('slug', 100)->unique();
             $table->string('descricao', 255)->nullable();
-            $table->string('cor', 20)->default('#3B82F6'); // cor padrão azul
-            $table->boolean('ativo')->default(true); //padrao verdadeiro
             $table->timestamps();
         });
 ```
@@ -65,13 +62,14 @@ tabela noticias
     Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->string('titulo', 255);
-            $table->string('slug', 255)->unique();
+            $table->string('resumo',500);
             $table->text('conteudo');
             $table->string('linkImg')->nullable();
-            $table->enum('status', ['rascunho', 'publicado', 'arquivado'])->default('rascunho'); // enumeracao. 1, 2, 3
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->softDeletes(); //lixeira
             // https://albuquerque53.medium.com/entendendo-o-soft-delete-do-laravel-ce097c41214
         });
@@ -79,7 +77,7 @@ tabela noticias
 
 ### Atualização do Relacionamento Notícias-Categorias
 
-Removida a coluna `categoria_id` da tabela `noticias` e criada uma nova tabela pivot:
+Criar uma nova tabela pivot:
 
 ```bash
 php artisan make:migration create_categoria_noticia_table
@@ -92,6 +90,7 @@ Schema::create('categoria_noticia', function (Blueprint $table) {
     $table->foreignId('noticia_id')->constrained()->onDelete('cascade');
     $table->timestamps();
 });
+```
 
 
 ```bash
@@ -142,42 +141,18 @@ use HasFactory;
 
     protected $fillable = [
         'nome',
-        'slug',
         'descricao',
-        'cor',
-        'ativo'
     ]; // ja sabemos, adicionar
 
 
     //Accessors, mutators e attribute casting permitem que você transforme valores de atributos do Eloquent quando você os recupera ou define em instâncias de modelo. Por exemplo, você pode querer usar o criptografador do Laravel para criptografar um valor enquanto ele está armazenado no banco de dados e, em seguida, descriptografar automaticamente o atributo quando você acessá-lo em um modelo Eloquent
 
-    protected $casts = [
-        'ativo' => 'boolean',
-    ];
-
     // Relacionamentos
     public function noticias()
     {
-        return $this->hasMany(Noticia::class);
+        return $this->belongsToMany(Noticia::class, 'categoria_noticia');
     }
 
-    // Mutators
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($categoria) {
-            if (empty($categoria->slug)) {
-                $categoria->slug = Str::slug($categoria->nome);
-            }
-        });
-
-        static::updating(function ($categoria) {
-            if ($categoria->isDirty('nome') && empty($categoria->slug)) {
-                $categoria->slug = Str::slug($categoria->nome);
-            }
-        });
-    }
 ```
 
 noticia
@@ -194,10 +169,9 @@ noticia
     
     protected $fillable = [
         'titulo',
-        'slug',
+        'resumo',
         'conteudo',
         'linkImg',
-        'status',
         'user_id',
         'published_at'
     ];
@@ -217,51 +191,11 @@ noticia
         return $this->belongsTo(User::class);
     }
 
-    // Mutators
-    protected static function boot()
+     public function categorias()
     {
-        parent::boot();
-        
-        static::creating(function ($noticia) {
-            if (empty($noticia->slug)) {
-                $noticia->slug = Str::slug($noticia->titulo);
-            }
-            
-            if ($noticia->status === 'publicado' && empty($noticia->published_at)) {
-                $noticia->published_at = now();
-            }
-        });
-
-        static::updating(function ($noticia) {
-            if ($noticia->isDirty('titulo') && empty($noticia->slug)) {
-                $noticia->slug = Str::slug($noticia->titulo);
-            }
-
-            if ($noticia->isDirty('status')) {
-                if ($noticia->status === 'publicado' && empty($noticia->published_at)) {
-                    $noticia->published_at = now();
-                }
-                $noticia->touch(); // Force update the updated_at timestamp
-            }
-        });
+        return $this->belongsToMany(Categoria::class, 'categoria_noticia');
     }
-
-    // Scopes  
-    //Os escopos globais permitem que você adicione restrições a todas as consultas para um determinado modelo. A funcionalidade de exclusão suave do próprio Laravel utiliza escopos globais para recuperar apenas modelos "não excluídos" do banco de dados.
-    public function scopePublicadas($query)
-    {
-        return $query->where('status', 'publicado');
-    }
-
-    public function scopeRascunhos($query)
-    {
-        return $query->where('status', 'rascunho');
-    }
-
-    public function scopeArquivadas($query)
-    {
-        return $query->where('status', 'arquivado');
-    }
+    
 ```
 
 Controllers
@@ -285,15 +219,9 @@ public function index()
     {
         $validated = $request->validate([
             'nome' => 'required|max:100|unique:categorias', //unico em catrgorias
-            'slug' => 'nullable|max:100|unique:categorias',
-            'descricao' => 'nullable|max:255',
-            'cor' => 'required|max:20',
-            'ativo' => 'boolean'
+            'descricao' => 'nullable|max:500'
         ]);
 
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['nome']); //método gera um "slug" amigável à URL a partir da string fornecida: ou seja taca - no lugar do espaço
-        }
 
         Categoria::create($validated); //o mesmo que salvar objeto
 
@@ -310,15 +238,8 @@ public function index()
     {
         $validated = $request->validate([
             'nome' => 'required|max:100|unique:categorias,nome,' . $categoria->id, //nao entendi
-            'slug' => 'nullable|max:100|unique:categorias,slug,' . $categoria->id,
-            'descricao' => 'nullable|max:255',
-            'cor' => 'required|max:20',
-            'ativo' => 'boolean'
+            'descricao' => 'nullable|max:500'
         ]);
-
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['nome']);
-        }
 
         $categoria->update($validated);
 
@@ -357,29 +278,25 @@ public function index()
 
     public function create()
     {
-        $categorias = Categoria::where('ativo', true)
-            ->orderBy('nome')
-            ->get();
-        return view('noticias.create', compact('categorias'));
+        $categorias = Categoria::all();
+        return view('admin.noticias.create', compact('categorias'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'titulo' => 'required|max:255',
-            'slug' => 'nullable|max:255|unique:noticias',
+            'resumo' => 'required|max:500',
             'conteudo' => 'required',
-            'linkImg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', //
-            'status' => 'required|in:rascunho,publicado,arquivado',
+            'linkImg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categorias' => 'required|array',
             'categorias.*' => 'exists:categorias,id'
         ]);
 
         $noticia = new Noticia();
         $noticia->titulo = $validated['titulo'];
-        $noticia->slug = empty($validated['slug']) ? Str::slug($validated['titulo']) : $validated['slug'];
         $noticia->conteudo = $validated['conteudo'];
-        $noticia->status = $validated['status'];
+        $noticia->resumo = $validated['resumo'];
         $noticia->user_id = auth()->id();
 
         if ($request->hasFile('linkImg')) { //se tiver arquivo
@@ -387,11 +304,10 @@ public function index()
             $noticia->linkImg = $path;
         }
 
-        if ($noticia->status === 'publicado') {
-            $noticia->published_at = now(); //Agora
-        }
-
         $noticia->save();
+        // Anexa as categorias selecionadas
+        $noticia->categorias()
+                ->attach($request->categorias); //adiciona as categorias
 
         return redirect()->route('profile.edit')
             ->with('success', 'Notícia criada com sucesso!');
@@ -416,18 +332,16 @@ public function index()
 
         $validated = $request->validate([
             'titulo' => 'required|max:255',
-            'slug' => 'nullable|max:255|unique:noticias,slug,' . $noticia->id,
             'conteudo' => 'required',
+            'resumo' => 'required|max:500',
             'linkImg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:rascunho,publicado,arquivado',
             'categorias' => 'required|array',
-                'categorias.*' => 'exists:categorias,id'
+            'categorias.*' => 'exists:categorias,id'
         ]);
 
         $noticia->titulo = $validated['titulo'];
-        $noticia->slug = empty($validated['slug']) ? Str::slug($validated['titulo']) : $validated['slug'];
         $noticia->conteudo = $validated['conteudo'];
-        $noticia->status = $validated['status'];
+        $noticia->resumo = $validated['resumo'];
 
         if ($request->hasFile('linkImg')) {
             // Delete old image
@@ -439,11 +353,9 @@ public function index()
             $noticia->linkImg = $path;
         }
 
-        if ($noticia->status === 'publicado' && empty($noticia->published_at)) {
-            $noticia->published_at = now();
-        }
-
         $noticia->save();
+        // Sincroniza as categorias (remove as antigas e adiciona as novas)
+        $noticia->categorias()->sync($request->categorias);
 
         return redirect()->route('profile.edit')
             ->with('success', 'Notícia atualizada com sucesso!');
@@ -541,10 +453,8 @@ resources/views/
 
 ### 2.1 Lista de Categorias (index.blade.php)
 - Tabela responsiva com colunas para:
-  - Cor (exibida como um quadrado colorido)
-  - Nome e slug
+  - Nome
   - Descrição
-  - Status (ativo/inativo)
   - Contador de notícias
   - Ações (editar/excluir)
 - Paginação integrada
@@ -554,8 +464,6 @@ resources/views/
 - Campos incluídos:
   - Nome (com geração automática de slug)
   - Descrição
-  - Seletor de cor
-  - Status (checkbox ativo/inativo)
 - Validação em tempo real
 - Preview da cor selecionada
 
@@ -565,8 +473,7 @@ resources/views/
 - Cards responsivos exibindo:
   - Imagem em miniatura
   - Título
-  - Categoria (com cor personalizada)
-  - Status (rascunho/publicado/arquivado)
+  - Categoria
   - Data de publicação
   - Ações (visualizar/editar/excluir)
 
@@ -576,12 +483,10 @@ resources/views/
   - Seleção de categoria (dropdown)
   - Upload de imagem principal
   - Editor de texto rico (Quill)
-  - Status da publicação
 - Preview em tempo real:
   - Título
   - Categoria
   - Conteúdo formatado
-  - Status
 - Integração com Quill Editor:
   ```javascript
   var quill = new Quill('#editor', {
