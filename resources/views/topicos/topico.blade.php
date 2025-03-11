@@ -83,7 +83,7 @@
                         <div>
 
                             @forelse($noticias as $noticia)
-                            <a href="{{ route('noticias.show', $noticia) }}" class="flex items-center
+                            <a href="{{ route('noticias.show', $noticia) }}" class="flex items-center">
                                 <div class="block-container-full">
                                         <div class="block-layer">
                                                 <div class="relative flex flex-col group text-primary transition">
@@ -96,6 +96,7 @@
                                                                                         class="outline-none text-secondary f-heading-5">
                                                                                         <font
                                                                                                 style="vertical-align: inherit;">
+                                                                                                
                                                                                         </font>
                                                                                 </h2>
 

@@ -31,7 +31,7 @@ DB_PASSWORD=
 
 5. Execute as migrações:
 ```bash
-php artisan migrate
+(php artisan migrate) -and (php artisan db:seed)
 ```
 se ele pedir para criar algum arquivo, digite *yes*.
 

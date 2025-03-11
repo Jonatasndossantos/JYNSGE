@@ -2,19 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Categoria;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\Categoria;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class DatabaseSeeder extends Seeder
+class CategoriaSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
@@ -35,6 +34,5 @@ class DatabaseSeeder extends Seeder
             ['nome' => 'Tecnologia Veicular', 'descricao' => 'Desde veículos autônomos e conectados até avanços no transporte aéreo, a tecnologia transformou a maneira como vivenciamos a mobilidade.'],
             ['nome' => 'Automação', 'descricao' => 'Desde veículos autônomos e conectados até avanços no transporte aéreo, a tecnologia transformou a maneira como vivenciamos a mobilidade.']
         ]);
-
     }
 }
