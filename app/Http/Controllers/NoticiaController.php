@@ -146,4 +146,9 @@ class NoticiaController extends Controller
         return redirect()->route('profile.edit')
             ->with('success', 'Notícia excluída com sucesso!');
     }
+
+
+    
+
+
 }
