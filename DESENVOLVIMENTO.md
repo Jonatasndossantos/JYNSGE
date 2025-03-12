@@ -648,7 +648,11 @@ onsubmit="return confirm('Tem certeza que deseja excluir?');"
 - Melhorar a responsividade em dispositivos móveis
 - Implementar cache para otimização
 
+  ## 8. Buscas e Filtros
 
+  sera uma busca por categoria/topico, data e se der tempo implementar uma ia para conversa e busca dentro dos dados. alem de um red
+
+   
 
 
 
