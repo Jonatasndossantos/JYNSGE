@@ -1,6 +1,7 @@
 <x-app-layout>
     @include('layouts/header')
     
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <div class="min-h-screen bg-gray-50">
         <div class="container mx-auto px-4 py-8">
             <div class="max-w-2xl mx-auto">
@@ -30,20 +31,6 @@
                             @enderror
                         </div>
 
-                        <div>
-                            <label for="slug" class="block text-sm font-medium text-gray-700 mb-1">
-                                Slug
-                                <span class="text-gray-400">(opcional, será gerado automaticamente)</span>
-                            </label>
-                            <input type="text" 
-                                   name="slug" 
-                                   id="slug" 
-                                   value="{{ old('slug') }}"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('slug') border-red-500 @enderror">
-                            @error('slug')
-                                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
 
                         <div>
                             <label for="descricao" class="block text-sm font-medium text-gray-700 mb-1">
@@ -64,37 +51,6 @@
                             @error('descricao')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                             @enderror
-                        </div>
-
-
-                        <div>
-                            <label for="cor" class="block text-sm font-medium text-gray-700 mb-1">Cor *</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="color" 
-                                       name="cor" 
-                                       id="cor" 
-                                       value="{{ old('cor', '#3B82F6') }}"
-                                       class="h-10 w-20 border border-gray-300 rounded-md cursor-pointer @error('cor') border-red-500 @enderror"
-                                       required>
-                                <input type="text" 
-                                       id="corHex"
-                                       class="w-32 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                       readonly>
-                            </div>
-                            @error('cor')
-                                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" 
-                                       name="ativo" 
-                                       value="1" 
-                                       {{ old('ativo', true) ? 'checked' : '' }}
-                                       class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                <span class="ml-2 text-sm text-gray-600">Categoria ativa</span>
-                            </label>
                         </div>
 
                         <div class="flex justify-end pt-6">

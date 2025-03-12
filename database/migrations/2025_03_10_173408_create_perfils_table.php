@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->id();
-            $table->string('bio');
+            $table->string('bio')->nullable();
             $table->text('biografia')->nullable();
             $table->string('linkImg')->nullable();
+
             $table->json('sociais')->nullable();
+
             $table->boolean('tipoUser')->nullable();
             
             $table->timestamps();

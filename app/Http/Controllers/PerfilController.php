@@ -21,10 +21,7 @@ class PerfilController extends Controller
         $user = auth()->user(); // Assuming the user is authenticated
         $perfil = Perfil::where('user_id', $user->id)->first(); // Pega o perfil do usuário
 
-        // Pega o parâmetro da URL ou usa false como padrão
-        $showForm = $request->query('form', false); // resultado lá no home
-
-        return view('perfil.index', compact('perfil', 'user', 'showForm'));
+        return view('perfil.index', compact('perfil', 'user'));
     }
 
     /**

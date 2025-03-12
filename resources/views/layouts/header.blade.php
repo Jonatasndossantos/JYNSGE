@@ -324,7 +324,7 @@
                                                     role="menuitem">
                                                     Nova Notícia
                                                 </a>
-                                                <a href="{{ route('categorias.index') }}" 
+                                                <a href="{{ route('categorias.index') }}"
                                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
                                                     role="menuitem">
                                                     Gerenciar Categorias

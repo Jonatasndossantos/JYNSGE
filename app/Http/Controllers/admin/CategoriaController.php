@@ -29,10 +29,10 @@ class CategoriaController extends Controller
     public function create()
     {
         try {
-            return view('categorias.create');
+            return view('admin.categorias.create');
         } catch (Exception $e) {
             Log::error('Erro ao carregar formulário de criação: ' . $e->getMessage());
-            return redirect()->route('categorias.index')
+            return redirect()->route('admin.categorias.index')
                 ->with('error', 'Não foi possível carregar o formulário. Tente novamente.');
         }
     }
@@ -64,7 +64,7 @@ class CategoriaController extends Controller
 
             Categoria::create($validated);
 
-            return redirect()->route('categorias.index')
+            return redirect()->route('admin.categorias.index')
                 ->with('success', 'Categoria criada com sucesso!');
 
         } catch (ValidationException $e) {
@@ -89,7 +89,7 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         try {
-            return view('categorias.edit', compact('categoria'));
+            return view('admin.categorias.edit', compact('categoria'));
         } catch (Exception $e) {
             Log::error('Erro ao carregar edição da categoria: ' . $e->getMessage());
             return redirect()->route('categorias.index')
@@ -116,7 +116,7 @@ class CategoriaController extends Controller
 
             $categoria->update($validated);
 
-            return redirect()->route('categorias.index')
+            return redirect()->route('admin.categorias.index')
                 ->with('success', 'Categoria atualizada com sucesso!');
 
         } catch (ValidationException $e) {

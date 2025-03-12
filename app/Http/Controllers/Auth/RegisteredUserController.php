@@ -41,6 +41,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Create a perfil for the user (optional)
+        $user->perfil()->create([
+            // You can set default values or leave them null
+            'bio' => null,
+            'biografia' => null,
+            'linkImg' => null,
+            'sociais' => null,
+            'tipoUser' => null,
+        ]);
+
         event(new Registered($user));
 
         Auth::login($user);
