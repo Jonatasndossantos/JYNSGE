@@ -84,11 +84,9 @@ class NoticiaController extends Controller
     }
 
     public function edit(Noticia $noticia)
-    {
-        
-        $categorias = Categoria::where('ativo', true)
-            ->orderBy('nome')
-            ->get();
+    {        
+        $categorias = Categoria::all();
+
         return view('admin.noticias.edit', compact('noticia', 'categorias'));
     }
 

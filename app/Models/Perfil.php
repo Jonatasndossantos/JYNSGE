@@ -20,6 +20,7 @@ class Perfil extends Model
     protected $fillable = [
         'bio',
         'biografia',
+        'linkImgCover',
         'linkImg',
         'sociais',
         'tipoUser',

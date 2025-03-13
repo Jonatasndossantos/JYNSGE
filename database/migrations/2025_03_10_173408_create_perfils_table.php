@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('bio')->nullable();
             $table->text('biografia')->nullable();
+            $table->string('linkImgCover')->nullable();
             $table->string('linkImg')->nullable();
 
             $table->json('sociais')->nullable();
