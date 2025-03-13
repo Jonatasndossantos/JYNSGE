@@ -40,7 +40,7 @@
                             </div>
                         </li>
                         <li class="shrink-0" data-desktopnav-group="">
-                            <a href="#" type="button"
+                            <a href="{{ route('discussions.index') }}" type="button"
                                 class="inline-flex justify-center items-center transition-colors duration-100 disabled:opacity-30 disabled:pointer-events-none pl-12 pr-12 rounded min-w-48 min-h-48 py-12 f-heading-2 hover:bg-interactive-on-background active:bg-layer text-light aria-expanded:bg-white aria-expanded:text-inverse">
                                 <span class="pt-1 text-inherit pointer-events-none mr-4">Análises</span>
                             </a>
@@ -314,7 +314,7 @@
                                                 <!-- Settings Dropdown -->
 
                                                 <div>{{ Auth::user()->name }}</div>
-                                                <a href="{{ route('profile.edit') }}" 
+                                                <a href="{{ route('perfil.index') }}" 
                                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
                                                     role="menuitem">
                                                     Meu Perfil

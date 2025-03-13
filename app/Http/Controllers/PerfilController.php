@@ -83,7 +83,7 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        return view('', compact('perfil'));
+        return view('perfil.index', compact('perfil'));
     }
 
     /**
@@ -117,7 +117,7 @@ class PerfilController extends Controller
         }
 
         $validated = $request->validate([
-            'bio' => 'max:500',
+            'bio' => 'max:500|nullable',
             'linkImg' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'tipoUser' => '',
             'socials' => 'array|nullable'
@@ -173,13 +173,18 @@ class PerfilController extends Controller
         }
 
         try{
-            if(isset($validated['bio'])) {
+            if ($request->has('bio')) {
                 $perfil->bio = $validated['bio'];
             }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Bio updated successfully'
+            ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Error updating biography: ' . $e->getMessage()
+                'message' => 'Error updating bio: ' . $e->getMessage()
             ], 422);
         }
 
@@ -278,6 +283,39 @@ class PerfilController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Error deleting banner: ' . $e->getMessage()
+            ], 422);
+        }
+    }
+
+    /**
+     * Display a listing of profiles.
+     */
+    public function adminIndex()
+    {
+        $perfils = Perfil::with('user')  // Eager load user relationship
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(9);  // Paginate results
+        
+        return view('admin.perfils.index', compact('perfils'));
+    }
+
+    /**
+     * Toggle user type between admin and regular user.
+     */
+    public function toggleType(Request $request, Perfil $perfil)
+    {
+        try {
+            $perfil->tipoUser = $request->tipoUser;
+            $perfil->save();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Tipo de usuário alterado com sucesso'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro ao alterar tipo de usuário: ' . $e->getMessage()
             ], 422);
         }
     }

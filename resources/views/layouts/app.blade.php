@@ -41,5 +41,7 @@
 <script src="{{ url ('/assets/app-DDAX_FZV.js')}}"></script>
 <script type="text/javascript" defer="" src="{{ url ('assets/app-BpZz5RQ0.js')}}"></script>
 
+@stack('scripts')
 
+</body>
 </html>

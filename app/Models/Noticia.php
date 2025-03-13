@@ -43,5 +43,8 @@ class Noticia extends Model
         return $this->belongsToMany(Categoria::class, 'categoria_noticia');
     }
 
-    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
