@@ -1,3 +1,53 @@
+## 🔧 Instalação e Configuração
+
+1. Clone o repositório:
+```bash
+git clone [url-do-repositorio]
+cd [nome-do-projeto]
+```
+
+2. Instale as dependências do PHP:
+```bash
+composer update
+```
+
+3. Configure o ambiente:
+```bash
+cp .env.example .env
+```
+```bash
+php artisan key:generate
+```
+
+4. Configure o banco de dados no arquivo .env:
+```php
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=jynsge
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+5. Execute as migrações:
+```bash
+(php artisan migrate) -and (php artisan db:seed)
+```
+se ele pedir para criar algum arquivo, digite *yes*.
+
+6. Execute a criação do local de armazenamento:
+```bash
+php artisan storage:link
+```
+
+
+7. Inicie o servidor:
+```bash
+php artisan serve
+```
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

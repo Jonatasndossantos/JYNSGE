@@ -1,0 +1,162 @@
+<div class="col-12 col-md-4">
+
+    <dl>
+        <dt><label class="d-block mb-2">Profile picture</label></dt>
+        <dd class="avatar-upload-container clearfix position-relative">
+
+            <!-- '"` --><!-- </textarea></xmp> -->
+            <form data-turbo="false" class="edit_user" id="" novalidate="novalidate" aria-label="Profile picture"
+                action="/users/Jonatasndossantos" accept-charset="UTF-8" method="post"><input type="hidden"
+                    name="_method" value="put" autocomplete="off"><input type="hidden" name="authenticity_token"
+                    value="HV96dLAemKp4aSKET5TwaNT3lw1KvZV43-iNY99RWXrkXFL6nrYFSIDwI0wFojGHe020apiL9WA-MiT1QsSCRQ">
+                <file-attachment input="avatar_upload" class="js-upload-avatar-image is-default"
+                    data-alambic-owner-id="177148286" data-alambic-owner-type="User"
+                    data-upload-policy-url="/upload/policies/avatars"><input type="hidden"
+                        value="PUIDrJDnf_uyzAnZE3iA0hUFFLrpnuUSWvw3Hdhyh8bRFKyojYpMPj0PrRDVet8lglw22-22aS4gm_DAThxnQg"
+                        data-csrf="true" class="js-data-upload-policy-url-csrf">
+                    <input type="file" id="avatar_upload" class="manual-file-chooser width-full ml-0" hidden="">
+                    <div class="avatar-upload">
+                        <div class="upload-state color-fg-danger file-empty">
+                            This file is empty.
+                        </div>
+
+                        <div class="upload-state color-fg-danger too-big">
+                            Please upload a picture smaller than 1 MB.
+                        </div>
+
+                        <div class="upload-state color-fg-danger bad-dimensions">
+                            Please upload a picture smaller than 10,000x10,000.
+                        </div>
+
+                        <div class="upload-state color-fg-danger bad-file">
+                            We only support PNG, GIF, or JPG pictures.
+                        </div>
+
+                        <div class="upload-state color-fg-danger failed-request">
+                            Something went really wrong and we can’t process that picture.
+                        </div>
+
+                        <div class="upload-state color-fg-danger bad-format">
+                            File contents don’t match the file extension.
+                        </div>
+                    </div>
+
+                </file-attachment>
+            </form>
+            <div class="avatar-upload">
+                <details class="dropdown details-reset details-overlay">
+                    <summary aria-haspopup="menu" role="button">
+                        <img class="avatar rounded-2 avatar-user"
+                            src="https://avatars.githubusercontent.com/u/177148286?s=400&amp;u=4ab5ffa200a0e6a6f3a63d8479b12e2f479f8bf8&amp;v=4"
+                            width="200" height="200" alt="@Jonatasndossantos">
+                        <div
+                            class="position-absolute color-bg-default rounded-2 color-fg-default px-2 py-1 left-0 bottom-0 ml-2 mb-2 border">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
+                                data-view-component="true" class="octicon octicon-pencil">
+                                <path
+                                    d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z">
+                                </path>
+                            </svg>
+                            Edit
+                        </div>
+                    </summary>
+                    <details-menu class="dropdown-menu dropdown-menu-se" style="z-index: 99" role="menu">
+                        <label for="avatar_upload" class="dropdown-item text-normal" style="cursor: pointer;"
+                            role="menuitem" tabindex="0">
+                            Upload a photo…
+                        </label>
+                        <!-- '"` --><!-- </textarea></xmp> -->
+                        <form data-turbo="false" action="/settings/primary_avatar" accept-charset="UTF-8" method="post">
+                            <input type="hidden" name="_method" value="delete" autocomplete="off"><input type="hidden"
+                                name="authenticity_token"
+                                value="SM2hL7O_1ZCg5TbsTGidemuV0VfOW54RiU277w_G1lsM5QfRZJDVhA7STF4iS5QwH5pduP3oRV-BSYnys7f3zg">
+                            <avatar-reset data-gravatar-enabled="" data-gravatar-text="Revert to Gravatar"
+                                data-url="/settings/gravatar_status" data-catalyst="">
+                                <button class="btn-link dropdown-item" type="submit" name="op" value="reset"
+                                    role="menuitem" data-disable-with=""
+                                    data-confirm="Are you sure you want to reset your current avatar?"
+                                    data-target="avatar-reset.removeButton">
+                                    Remove photo
+                                </button>
+                            </avatar-reset>
+                        </form>
+                    </details-menu>
+                </details>
+
+                <div class="upload-state loading position-absolute color-bg-subtle rounded-2"
+                    style="top: 0; right: 0; opacity: 0.25; width: 200px; height: 200px;">
+                    <span class="position-absolute" style="top: 40px; left: 35px;"><span data-view-component="true">
+                            <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="64"
+                                height="64" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+                                data-view-component="true" class="anim-rotate">
+                                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2"
+                                    vector-effect="non-scaling-stroke" fill="none"></circle>
+                                <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+                            </svg> <span class="sr-only">Loading</span>
+                        </span></span>
+                </div>
+            </div>
+        </dd>
+    </dl>
+
+</div>
+
+<details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal" role="dialog"
+    aria-modal="true" tabindex="-1">
+    <div class="Box-header">
+        <h3 class="Box-title">Crop your new profile picture</h3>
+    </div>
+    <!-- '"` --><!-- </textarea></xmp> -->
+    <form class="d-flex flex-column flex-auto" id="avatar-crop-form" data-alambic-avatar-id="44172015"
+        style="min-height: 0;" data-turbo="false" action="/settings/avatars/44172015" accept-charset="UTF-8"
+        method="post"><input type="hidden" name="authenticity_token"
+            value="T_Gr0t4X62K2-fCkL67mNsJVM1QVwktFZ6wgxxlZMnoaGBLolbcdt5QXfcbtxmVYfRhO_eRBuX7dfHKA4InH4A">
+        <div class="Box-body overflow-auto">
+            <image-crop
+                src="https://media.githubusercontent.com/avatars/44172015?orig=1&amp;token=BKHRC7X7KIFA7SMUVQK75JTH2CSWI"
+                rounded="" loaded="">
+                <div data-loading-slot="" style="height:247px">
+                    <div class="d-flex flex-items-center height-full">
+                        <span data-view-component="true">
+                            <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="64"
+                                height="64" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+                                data-view-component="true" class="flex-1 anim-rotate">
+                                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2"
+                                    vector-effect="non-scaling-stroke" fill="none"></circle>
+                                <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+                            </svg> <span class="sr-only">Loading</span>
+                        </span>
+                    </div>
+                </div>
+                <input type="hidden"
+                    value="ZlyhFBuyOcn_HRYgIfLCi6IwStSv-gxbrngpF8MGbBsztRguUBLPHN3zm0LjmkHlHX03fV55_mAUqHtQOtaZgQ"
+                    data-csrf="true" class="js-avatar-post-csrf">
+                <input type="hidden" data-image-crop-input="x" name="cropped_x" value="179">
+                <input type="hidden" data-image-crop-input="y" name="cropped_y" value="0">
+                <input type="hidden" data-image-crop-input="width" name="cropped_width" value="580">
+                <input type="hidden" data-image-crop-input="height" name="cropped_height" value="580">
+            </image-crop>
+        </div>
+
+        <div class="Box-footer">
+            <button name="op" value="save" data-disable-with="" type="submit" data-view-component="true"
+                class="Button--primary Button--medium Button Button--fullWidth"> <span class="Button-content">
+                    <span class="Button-label">Set new profile picture</span>
+                </span>
+            </button>
+
+        </div>
+    </form>
+    <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button"
+        aria-label="Close dialog" data-close-dialog="">
+        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-x">
+            <path
+                d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z">
+            </path>
+        </svg>
+    </button>
+
+</details-dialog>
