@@ -1,3 +1,31 @@
+📰 JYNSGE - Jornalismo e Notícias com Segurança e Gestão Eficiente
+O JYNSGE é um portal de notícias tecnológicas desenvolvido como projeto integrador de um curso técnico em informática, com foco na modernização do jornalismo digital e no combate à desinformação.
+
+O sistema oferece uma plataforma robusta para leitura e publicação de conteúdos, integrando fontes externas via API, autenticação segura com Google e GitHub, e funcionalidades de administração para categorizar, moderar e destacar conteúdos de forma eficaz.
+
+🔍 Destaques do Projeto
+
+✅ Arquitetura MVC com Laravel, Blade e Tailwind CSS
+
+✅ Integração com APIs externas (ex: RSS de sites confiáveis)
+
+✅ Sistema de autenticação com Laravel Breeze, Google e GitHub
+
+✅ Interface moderna e responsiva com Tailwind CSS
+
+✅ Diferenciação entre notícias oficiais e publicações de usuários
+
+✅ Upload de imagens, comentários e categorização por tema
+
+✅ Painel administrativo para controle de conteúdo
+
+✅ Hospedado no Azure App Service (durante a fase ativa)
+
+✅ Testes manuais e com PEST (abordagem didática)
+
+![image](https://github.com/user-attachments/assets/33006547-eee8-445c-a724-4b0af26f1cb4)
+
+
 ## 🔧 Instalação e Configuração
 
 1. Clone o repositório:
